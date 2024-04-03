@@ -53,6 +53,7 @@ jobs:
           make clean
       - name: checking binary exist
         run: |
+          echo "${{ env.EXECUTABLES}}"
           for exec in $(echo "${{ env.EXECUTABLES}}" | tr "," " "); do
             if [ ! -f "$exec" ]; then
               echo "::error file=$exec,title=Binary::Binary not found"
