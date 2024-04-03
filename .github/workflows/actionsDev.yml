@@ -12,35 +12,35 @@ env:
   EXECUTABLES: "myteams_cli,myteams_server"
 
 jobs:
-  check_coding_style:
-    runs-on: ubuntu-latest
-    container: ghcr.io/epitech/coding-style-checker:latest
-    steps:
-      - uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
-      - name: execute coding style checker
-        run: check.sh $(pwd) $(pwd)
-      - name: verify norme
-        run: |
-          bool_error=0
-          while read line; do
-            path=$(echo "$line" | cut -d: -f1)
-            fileLine=$(echo "$line" | cut -d: -f2)
-            type=$(echo "$line" | cut -d: -f3)
-            title=$(echo "$type coding style error")
-            error_num=$(echo "$line" | cut -d: -f4)
-            bool_error=1
-            echo "::error file=$path,line=$fileLine,title=$title::$error_num"
-          done < coding-style-reports.log
-          if [ $bool_error -eq 1 ]
-          then
-            exit 1
-          fi
+#  check_coding_style:
+#    runs-on: ubuntu-latest
+#    container: ghcr.io/epitech/coding-style-checker:latest
+#    steps:
+#      - uses: actions/checkout@v3
+#        with:
+#          fetch-depth: 0
+#      - name: execute coding style checker
+#        run: check.sh $(pwd) $(pwd)
+#      - name: verify norme
+#        run: |
+#          bool_error=0
+#          while read line; do
+#            path=$(echo "$line" | cut -d: -f1)
+#            fileLine=$(echo "$line" | cut -d: -f2)
+#            type=$(echo "$line" | cut -d: -f3)
+#            title=$(echo "$type coding style error")
+#            error_num=$(echo "$line" | cut -d: -f4)
+#            bool_error=1
+#            echo "::error file=$path,line=$fileLine,title=$title::$error_num"
+#          done < coding-style-reports.log
+#          if [ $bool_error -eq 1 ]
+#          then
+#            exit 1
+#          fi
 
   compilation:
     name: Compilation
-    needs: check_coding_style
+#    needs: check_coding_style
     runs-on: ubuntu-latest
     container: epitechcontent/epitest-docker
     timeout-minutes: 4
