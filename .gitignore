@@ -30,3 +30,8 @@
 *.exe
 *.out
 *.app
+
+.idea/
+vgcore*
+myteams_*
+/coding-style-reports.log
