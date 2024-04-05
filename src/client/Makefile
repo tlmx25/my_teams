@@ -9,12 +9,20 @@ MAKEFLAGS += -silent
 CC = gcc
 
 VPATH += ../common/
+VPATH += src/
+VPATH += src/client/
+VPATH += src/connect/
+VPATH += src/request/
 
 SRC := $(shell find ../common/ -name '*.c' -exec basename {} \;)
 SRC += main.c
+SRC += client.c
+SRC += create_delete_client.c
+SRC += connect_client.c
+SRC += create_add_request.c
 
-
-CFLAGS = -Wall -Wextra -I ../../includes/ -I ../../libs/myteams/
+CFLAGS := -Wall -Wextra -I ../../includes/ -I ../../libs/myteams/
+CFLAGS += -iquote includes/
 
 LDFLAGS := -luuid -L ../../libs/ -lmy -L${CURDIR}/../../libs/myteams
 LDFLAGS += -l:libmyteams.so -Wl,-rpath=${CURDIR}/../../libs/myteams

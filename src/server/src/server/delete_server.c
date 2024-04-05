@@ -14,5 +14,6 @@ void delete_server(server_t *server)
         return;
     close(server->socket);
     clear_client_list(server->clients);
+    free(server->select_config);
     free(server);
 }

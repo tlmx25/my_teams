@@ -56,6 +56,7 @@ static void read_stdin(server_t *server)
         return;
     if (my_strcmp(line, "stop\n") == 0)
         server->is_running = false;
+    free(line);
 }
 
 static void accept_new_client(server_t *server)
@@ -73,11 +74,12 @@ static void accept_new_client(server_t *server)
     new_socket = accept(server->socket, (struct sockaddr *)address,
         (socklen_t *)&addrlen);
     if (new_socket == -1)
-        return;
+        return free(address);
     server->select_config->max_fd = (server->select_config->max_fd <
         new_socket) ? new_socket : server->select_config->max_fd;
     new_client = create_client(new_socket, NULL, NULL);
     add_client_to_list(server->clients, new_client);
+    free(address);
 }
 
 void manage_server(server_t *server)
@@ -91,6 +93,7 @@ void manage_server(server_t *server)
         next = client->next;
         check_read_client(server, client);
         check_write_client(server, client);
+        manage_request(server, client);
         if (!client->is_connected) {
             remove_client_from_list(server->clients, client);
         }
