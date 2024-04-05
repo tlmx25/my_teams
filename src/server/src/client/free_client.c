@@ -20,3 +20,19 @@ void free_client(client_t *client)
     free_request_list(client->requests_sent);
     free(client);
 }
+
+void clear_client_list(client_list_t *list)
+{
+    client_t *tmp;
+    client_t *next = NULL;
+
+    if (list == NULL)
+        return;
+    tmp = list->head;
+    for (; tmp; tmp = next) {
+        next = tmp->next;
+        free_client(tmp);
+    }
+    list->head = NULL;
+    list->tail = NULL;
+}

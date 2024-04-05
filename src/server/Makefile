@@ -11,6 +11,7 @@ CC = gcc
 VPATH += ../common/
 VPATH += src/
 VPATH += src/client/
+VPATH += src/server/
 
 SRC := $(shell find ../common/ -name '*.c' -exec basename {} \;)
 SRC += main.c
@@ -19,7 +20,10 @@ SRC += add_client.c
 SRC += free_client.c
 SRC += remove_client.c
 SRC += get_client.c
-
+SRC += server.c
+SRC += create_server.c
+SRC += delete_server.c
+SRC += server_manager.c
 
 CFLAGS := -Wall -Wextra -iquote ../../includes/ -iquote ../../libs/myteams
 CFLAGS += -iquote includes/

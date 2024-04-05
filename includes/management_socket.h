@@ -35,7 +35,7 @@ select_t *init_select(void);
  * @param fd fd to add
  * @param select select struct
  */
-void add_to_select(int fd, select_t *select);
+void add_to_select(select_t *select, int fd);
 
 /**
  * @brief reset the select struct

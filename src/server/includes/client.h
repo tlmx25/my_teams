@@ -99,4 +99,11 @@ client_t *get_client_by_uuid(client_list_t *list, uuid_t uuid);
  * @return client_t*
  */
 client_t *get_client_by_fd(client_list_t *list, int fd);
+
+/**
+ * @brief clear a client list
+ *
+ * @param list list to clear
+ */
+void clear_client_list(client_list_t *list);
 #endif //PRIVATE_TEAMS_CLIENT_H
