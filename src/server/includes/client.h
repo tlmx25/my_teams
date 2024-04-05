@@ -11,7 +11,13 @@
     #define PRIVATE_TEAMS_CLIENT_H
     #include "request.h"
 
+typedef enum {
+    false,
+    true
+} bool;
+
 typedef struct client_s {
+    bool is_connected;
     uuid_t uuid;
     int fd;
     char *username;

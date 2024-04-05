@@ -5,6 +5,7 @@
 ** remove_client
 */
 
+#include <stdio.h>
 #include "client.h"
 
 void remove_client_from_list(client_list_t *list, client_t *client)

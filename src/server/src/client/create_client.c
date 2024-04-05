@@ -6,6 +6,7 @@
 */
 
 #include <stdlib.h>
+#include <stdio.h>
 #include "my.h"
 #include "client.h"
 
@@ -18,8 +19,11 @@ client_t *create_client(int fd, char *username, char *password)
     client->fd = fd;
     client->username = my_strdup(username);
     client->password = my_strdup(password);
+    client->is_connected = (fd > 0) ? true : false;
     client->requests_received = create_request_list();
     client->requests_sent = create_request_list();
+    client->next = NULL;
+    client->prev = NULL;
     return client;
 }
 
