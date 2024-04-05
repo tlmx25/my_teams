@@ -15,10 +15,6 @@
     #include "request.h"
     #include "client.h"
 
-typedef enum {
-    false,
-    true
-} bool;
 
 typedef struct server_s {
     bool is_running;

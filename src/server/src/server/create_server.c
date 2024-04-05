@@ -23,6 +23,11 @@ server_t *create_server(int port)
         return NULL;
     }
     server->select_config = init_select();
+    if (server->select_config == NULL) {
+        delete_server(server);
+        return NULL;
+    }
+    server->select_config->max_fd = server->socket;
     server->clients = create_client_list();
     return server;
 }

@@ -5,7 +5,10 @@
 ** server_manager
 */
 
+#include <sys/socket.h>
+#include <stdlib.h>
 #include <stdio.h>
+#include <netinet/in.h>
 #include "server.h"
 #include "my.h"
 
@@ -17,7 +20,8 @@ static void check_read_client(server_t *server, client_t *client)
         return;
     req = read_socket(client->fd);
     if (req == NULL) {
-        remove_client_from_list(server->clients, client);
+        printf("Client disconnected\n");
+        client->is_connected = false;
         return;
     }
     add_request_to_list(client->requests_received, req);
@@ -28,7 +32,7 @@ static void check_write_client(server_t *server, client_t *client)
     linked_request_t *req = client->requests_sent->head;
     linked_request_t *next;
 
-    if (!FD_ISSET(client->fd, &server->select_config->writefds))
+    if (!FD_ISSET(client->fd, &server->select_config->writefds) && !client->is_connected)
         return;
     for (; req; req = next) {
         next = req->next;
@@ -53,15 +57,41 @@ static void read_stdin(server_t *server)
         server->is_running = false;
 }
 
+static void accept_new_client(server_t *server)
+{
+    int new_socket = 0;
+    struct sockaddr_in *address;
+    int addrlen = sizeof(struct sockaddr);
+    client_t *new_client = NULL;
+
+    if (!FD_ISSET(server->socket, &server->select_config->readfds))
+        return;
+    address = calloc(sizeof(struct sockaddr_in), 1);
+    if (address == NULL)
+        return;
+    new_socket = accept(server->socket, (struct sockaddr *)address,
+        (socklen_t *)&addrlen);
+    if (new_socket == -1)
+        return;
+    server->select_config->max_fd = (server->select_config->max_fd < new_socket)
+        ? new_socket : server->select_config->max_fd;
+    new_client = create_client(new_socket, NULL, NULL);
+    add_client_to_list(server->clients, new_client);
+}
+
 void manage_server(server_t *server)
 {
     client_t *client = server->clients->head;
     client_t *next = NULL;
 
     read_stdin(server);
+    accept_new_client(server);
     for (; client; client = next) {
         next = client->next;
         check_read_client(server, client);
         check_write_client(server, client);
+        if (!client->is_connected) {
+            remove_client_from_list(server->clients, client);
+        }
     }
 }
