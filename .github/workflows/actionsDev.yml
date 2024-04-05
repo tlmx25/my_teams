@@ -1,4 +1,4 @@
-name: Arcade action dev
+name: my_teams action dev
 on:
   push:
     branches:

@@ -8,8 +8,9 @@
 MAKEFLAGS += -silent
 CC = gcc
 
-VPATH += .
+VPATH += ../common/
 
+SRC := $(shell find ../common/ -name '*.c' -exec basename {} \;)
 SRC += main.c
 
 
