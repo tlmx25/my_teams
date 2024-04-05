@@ -32,7 +32,8 @@ static void check_write_client(server_t *server, client_t *client)
     linked_request_t *req = client->requests_sent->head;
     linked_request_t *next;
 
-    if (!FD_ISSET(client->fd, &server->select_config->writefds) && !client->is_connected)
+    if (!FD_ISSET(client->fd, &server->select_config->writefds) &&
+    !client->is_connected)
         return;
     for (; req; req = next) {
         next = req->next;
@@ -73,8 +74,8 @@ static void accept_new_client(server_t *server)
         (socklen_t *)&addrlen);
     if (new_socket == -1)
         return;
-    server->select_config->max_fd = (server->select_config->max_fd < new_socket)
-        ? new_socket : server->select_config->max_fd;
+    server->select_config->max_fd = (server->select_config->max_fd <
+        new_socket) ? new_socket : server->select_config->max_fd;
     new_client = create_client(new_socket, NULL, NULL);
     add_client_to_list(server->clients, new_client);
 }

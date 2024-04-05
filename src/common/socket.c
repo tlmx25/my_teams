@@ -50,7 +50,8 @@ static int bind_listen(int sockfd, struct sockaddr_in *server_addr)
 {
     int opt = 1;
 
-    if (setsockopt(sockfd, SOL_SOCKET, SO_REUSEADDR, &opt, sizeof(opt)) == -1) {
+    if (setsockopt(sockfd, SOL_SOCKET,
+    SO_REUSEADDR, &opt, sizeof(opt)) == -1) {
         perror("setsockopt");
         return -1;
     }
