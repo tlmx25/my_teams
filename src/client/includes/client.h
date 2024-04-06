@@ -75,24 +75,6 @@ int connect_to_server(client_t *client);
 void create_add_request(client_t *client, char *msg);
 
 /**
- * @brief Separate the request into arg
- *
- * @param request The request object
- *
- * @return char** The request arg separated in order
- */
-char **get_request_arg(const request_t *request);
-
-/**
- * @brief Get the command object and check if the number of arg is correct
- *
- * @param request The request object
- * @param nb_arg The number of arg to check
- * @return char** The args  if the number of arg is correct, NULL otherwise
- */
-char **get_request_nb_arg(const request_t *request, int nb_arg);
-
-/**
  * @brief Check if request action exist and execute it
  *
  * @param client The client object

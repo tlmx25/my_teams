@@ -10,6 +10,7 @@
 
 static const command_t COMMANDS[] = {
     {LOGGED_IN, &logged_in_command},
+    {PRINT_ERROR, &print_error_command},
     {NONE, NULL}
 };
 

@@ -39,3 +39,13 @@ void free_linked_request(linked_request_t *linked_req)
     free_request(linked_req->request);
     free(linked_req);
 }
+
+void create_add_request_to_list(request_list_t *list,
+action_t action, int code, char *body)
+{
+    request_t *req = create_request(action, code, body);
+
+    if (req == NULL)
+        return;
+    add_request_to_list(list, req);
+}
