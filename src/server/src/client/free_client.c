@@ -35,4 +35,5 @@ void clear_client_list(client_list_t *list)
     }
     list->head = NULL;
     list->tail = NULL;
+    free(list);
 }

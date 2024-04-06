@@ -14,6 +14,7 @@
     #include "management_socket.h"
     #include "request.h"
     #include "client.h"
+    #define UNUSED __attribute__((unused))
 
 
 typedef struct server_s {
@@ -52,4 +53,11 @@ int run_server(server_t *server);
  * @param server server to manage
  */
 void manage_server(server_t *server);
+
+/**
+ * @brief manage request of client
+ * @param server server
+ * @param client client to manage request
+ */
+void manage_request(server_t *server, client_t *client);
 #endif //PRIVATE_TEAMS_SERVER_H
