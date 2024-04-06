@@ -25,6 +25,13 @@ typedef struct server_s {
     client_list_t *clients;
 } server_t;
 
+typedef struct command_s {
+    char *command;
+    void (*func)(server_t *server, client_t *client, char **command);
+    bool need_logged;
+    int nb_args;
+} command_t;
+
 /**
  * @brief Create a new server
  *
@@ -60,4 +67,13 @@ void manage_server(server_t *server);
  * @param client client to manage request
  */
 void manage_request(server_t *server, client_t *client);
+
+/**
+ * @brief Manage command of request of client
+ * @param server server
+ * @param client
+ * @param command
+ */
+void command_manager(server_t *server, client_t *client, char **command);
+
 #endif //PRIVATE_TEAMS_SERVER_H

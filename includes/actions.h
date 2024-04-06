@@ -40,6 +40,7 @@ typedef enum action_e {
     NT_PRINT_REPLY, //client_print_reply_created
     NT_PRINT_SUB, //client_print_subscribed
     NT_PRINT_UNSUB, //client_print_unsubscribed
+    PRINT_ERROR,
     NONE,
 } action_t;
 

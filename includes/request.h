@@ -92,3 +92,32 @@ void free_request_list(request_list_t *list);
  * @param linked_request linked request to free
  */
 void free_linked_request(linked_request_t *linked_request);
+
+/**
+ * @brief Separate the request into arg
+ *
+ * @param request The request object
+ *
+ * @return char** The request arg separated in order
+ */
+char **get_request_arg(const request_t *request);
+
+/**
+ * @brief Get the command object and check if the number of arg is correct
+ *
+ * @param request The request object
+ * @param nb_arg The number of arg to check
+ * @return char** The args  if the number of arg is correct, NULL otherwise
+ */
+char **get_request_nb_arg(const request_t *request, int nb_arg);
+
+/**
+ * @brief Create a request and add it to the list
+ *
+ * @param list list to add the request to
+ * @param action action of the request
+ * @param code code of the request
+ * @param body body of the request
+ */
+void create_add_request_to_list(request_list_t *list, action_t action,
+    int code, char *body);

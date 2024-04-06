@@ -11,6 +11,19 @@
 #include "socket.h"
 #include "my.h"
 
+//TODO: ajouter gestion d'erreur ex ....
+static void process_command(client_t *client, char *line)
+{
+    char **command = my_str_to_word_array(line, " \t");
+
+    if (command == NULL)
+        return;
+    line = my_array_to_str_separator((char const **)command, "\r");
+    create_add_request_to_list(client->requests_to_send, NONE, 200, line);
+    free_tab(command);
+    free(line);
+}
+
 static void read_stdin(client_t *client)
 {
     char *line = NULL;
@@ -22,10 +35,9 @@ static void read_stdin(client_t *client)
     read = getline(&line, &len, stdin);
     if (read == -1)
         return;
-    printf("line : %s\n", line);
     if (my_strcmp(line, "/stop\n") == 0)
         client->is_running = false;
-    create_add_request(client, line);
+    process_command(client, line);
 }
 
 static void read_server_response(client_t *client)

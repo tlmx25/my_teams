@@ -18,5 +18,5 @@
  * @param request
  */
 void logged_in_command(UNUSED client_t *client, request_t *request);
-
+void print_error_command(UNUSED client_t *client, request_t *request);
 #endif //PRIVATE_TEAMS_COMMAND_CLIENT_H

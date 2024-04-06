@@ -19,7 +19,7 @@ request_t *create_request(action_t action, int code, char *body)
     req->code = code;
     uuid_generate(req->uuid);
     if (body != NULL)
-        my_strcpy(req->body, body);
+        my_strncpy(req->body, body, 4095);
     return req;
 }
 
@@ -76,5 +76,5 @@ void remove_request_from_list(request_list_t *list, uuid_t uuid)
         list->head = tmp->next;
     if (tmp == list->tail)
         list->tail = tmp->prev;
-    free(tmp->request);
+    free_linked_request(tmp);
 }

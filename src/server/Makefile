@@ -8,11 +8,11 @@
 MAKEFLAGS += -silent
 CC = gcc
 
-VPATH += ../common/
+VPATH := ../common/
 VPATH += src/
 VPATH += src/client/
 VPATH += src/server/
-VPTAH += src/commands/
+VPATH += src/commands/
 
 SRC := $(shell find ../common/ -name '*.c' -exec basename {} \;)
 SRC += main.c
@@ -25,7 +25,9 @@ SRC += server.c
 SRC += create_server.c
 SRC += delete_server.c
 SRC += server_manager.c
-SRC += src/commands/command_manager.c
+SRC += command_manager.c
+SRC += manage_requests.c
+SRC += login_command.c
 
 CFLAGS := -Wall -Wextra -iquote ../../includes/ -iquote ../../libs/myteams
 CFLAGS += -iquote includes/
