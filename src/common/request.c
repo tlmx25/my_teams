@@ -9,13 +9,13 @@
 #include "my.h"
 #include "request.h"
 
-request_t *create_request(int id, int code, char *body)
+request_t *create_request(action_t action, int code, char *body)
 {
     request_t *req = calloc(sizeof(request_t), 1);
 
     if (req == NULL)
         return NULL;
-    req->id = id;
+    req->action = action;
     req->code = code;
     uuid_generate(req->uuid);
     if (body != NULL)

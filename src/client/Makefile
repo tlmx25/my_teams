@@ -13,6 +13,7 @@ VPATH += src/
 VPATH += src/client/
 VPATH += src/connect/
 VPATH += src/request/
+VPATH += src/command/
 
 SRC := $(shell find ../common/ -name '*.c' -exec basename {} \;)
 SRC += main.c
@@ -20,6 +21,9 @@ SRC += client.c
 SRC += create_delete_client.c
 SRC += connect_client.c
 SRC += create_add_request.c
+SRC += command_manager.c
+SRC += logged_in_command.c
+SRC += parse_request.c
 
 CFLAGS := -Wall -Wextra -I ../../includes/ -I ../../libs/myteams/
 CFLAGS += -iquote includes/

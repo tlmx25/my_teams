@@ -5,6 +5,7 @@
 ** client
 */
 
+#include <stdlib.h>
 #include <stdio.h>
 #include "client.h"
 #include "socket.h"
@@ -37,7 +38,8 @@ static void read_server_response(client_t *client)
         client->is_running = false;
         return;
     }
-    printf("code : %i\nbody :\n%s\n", req->code, req->body);
+    command_manager(client, req);
+    free(req);
 }
 
 static void set_fd(client_t *client)

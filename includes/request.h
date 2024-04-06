@@ -11,6 +11,7 @@
     #define PRIVATE_TEAMS_REQUEST_H
     #define ERROR 84
     #include "uuid/uuid.h"
+    #include "actions.h"
 
 /**
  * @brief Request struct
@@ -21,7 +22,7 @@
  * body: body of the request
  */
 typedef struct request_s {
-    int id;
+    action_t action;
     int code;
     uuid_t uuid;
     char body[4096];
@@ -42,12 +43,12 @@ typedef struct request_list_s {
 /**
  * @brief Create a new request
  *
- * @param id id of the request
+ * @param action id of the request
  * @param code code of the request
  * @param body body of the request
  * @return request_t*
  */
-request_t *create_request(int id, int code, char *body);
+request_t *create_request(action_t action, int code, char *body);
 
 /**
  * @brief Create a new request list
