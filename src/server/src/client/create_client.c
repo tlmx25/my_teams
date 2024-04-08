@@ -10,13 +10,17 @@
 #include "my.h"
 #include "client.h"
 
-client_t *create_client(int fd, char *username, char *password)
+client_t *create_client(int fd, char *username, char *password, char *uuid)
 {
     client_t *client = malloc(sizeof(client_t));
 
     if (client == NULL)
         return NULL;
     client->fd = fd;
+    if (uuid)
+        uuid_parse(uuid, client->uuid);
+    else
+        uuid_generate(client->uuid);
     client->username = my_strdup(username);
     client->password = my_strdup(password);
     client->is_connected = (fd > 0) ? true : false;
@@ -35,5 +39,6 @@ client_list_t *create_client_list(void)
         return NULL;
     list->head = NULL;
     list->tail = NULL;
+    list->size = 0;
     return list;
 }

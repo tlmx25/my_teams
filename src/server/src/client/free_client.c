@@ -6,6 +6,7 @@
 */
 
 #include <stdlib.h>
+#include <stdio.h>
 #include "client.h"
 
 void free_client(client_t *client)
@@ -35,5 +36,11 @@ void clear_client_list(client_list_t *list)
     }
     list->head = NULL;
     list->tail = NULL;
+    list->size = 0;
+}
+
+void delete_client_list(client_list_t *list)
+{
+    clear_client_list(list);
     free(list);
 }

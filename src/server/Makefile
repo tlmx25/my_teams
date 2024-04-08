@@ -28,6 +28,8 @@ SRC += server_manager.c
 SRC += command_manager.c
 SRC += manage_requests.c
 SRC += login_command.c
+SRC += save_client.c
+SRC += load_client.c
 
 CFLAGS := -Wall -Wextra -iquote ../../includes/ -iquote ../../libs/myteams
 CFLAGS += -iquote includes/

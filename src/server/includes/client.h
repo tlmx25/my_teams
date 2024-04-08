@@ -10,6 +10,9 @@
 #ifndef PRIVATE_TEAMS_CLIENT_H
     #define PRIVATE_TEAMS_CLIENT_H
     #include "request.h"
+    #define CLIENT_FILE ".save/client.save"
+    #define SAVE_DIR ".save"
+    #define MAX_NAME_LENGTH 32
 
 typedef enum {
     false,
@@ -28,9 +31,16 @@ typedef struct client_s {
     struct client_s *prev;
 } client_t;
 
+typedef struct client_save_s {
+    uuid_t uuid;
+    char username[MAX_NAME_LENGTH + 1];
+    char password[MAX_NAME_LENGTH + 1];
+} client_save_t;
+
 typedef struct client_list_s {
     client_t *head;
     client_t *tail;
+    int size;
 } client_list_t;
 
 /**
@@ -41,7 +51,7 @@ typedef struct client_list_s {
  * @param password password of the client
  * @return client_t*
  */
-client_t *create_client(int fd, char *username, char *password);
+client_t *create_client(int fd, char *username, char *password, char *uuid);
 
 /**
  * @brief Create a new client list
@@ -112,4 +122,25 @@ client_t *get_client_by_fd(client_list_t *list, int fd);
  * @param list list to clear
  */
 void clear_client_list(client_list_t *list);
+
+/**
+ * @brief free a client list
+ *
+ * @param list list to free
+ */
+void delete_client_list(client_list_t *list);
+
+/**
+ * @brief save a client list to file CLIENT_FILE
+ *
+ * @param list list to save
+ */
+void save_client_list(client_list_t *list);
+
+/**
+ * @brief load a client list from file CLIENT_FILE
+ *
+ * @param list list to store the loaded clients
+ */
+void load_client_list(client_list_t *list);
 #endif //PRIVATE_TEAMS_CLIENT_H

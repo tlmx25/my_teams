@@ -23,7 +23,7 @@ void manage_request(UNUSED server_t *server, client_t *client)
             return;
         command_manager(server, client, command);
         free_tab(command);
-        remove_request_from_list(client->requests_received, tmp->request->uuid);
+        remove_request_from_list(client->requests_received,
+        tmp->request->uuid);
     }
-
 }

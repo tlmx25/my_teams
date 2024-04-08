@@ -22,6 +22,7 @@ typedef struct server_s {
     int port;
     int socket;
     select_t *select_config;
+    client_list_t *clients_loaded;
     client_list_t *clients;
 } server_t;
 

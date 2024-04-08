@@ -13,7 +13,8 @@ void delete_server(server_t *server)
     if (server == NULL)
         return;
     close(server->socket);
-    clear_client_list(server->clients);
+    delete_client_list(server->clients);
+    delete_client_list(server->clients_loaded);
     free(server->select_config);
     free(server);
 }
