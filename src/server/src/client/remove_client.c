@@ -19,6 +19,7 @@ void remove_client_from_list(client_list_t *list, client_t *client)
     if (list->tail == client)
         list->tail = client->prev;
     free_client(client);
+    list->size--;
 }
 
 void remove_client_by_fd(client_list_t *list, int fd)

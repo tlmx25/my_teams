@@ -77,7 +77,7 @@ static void accept_new_client(server_t *server)
         return free(address);
     server->select_config->max_fd = (server->select_config->max_fd <
         new_socket) ? new_socket : server->select_config->max_fd;
-    new_client = create_client(new_socket, NULL, NULL);
+    new_client = create_client(new_socket, NULL, NULL, NULL);
     add_client_to_list(server->clients, new_client);
     free(address);
 }

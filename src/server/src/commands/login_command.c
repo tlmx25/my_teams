@@ -9,7 +9,7 @@
 #include "server.h"
 
 void login_command(UNUSED server_t *server, client_t *client,
-UNUSED char **command)
+    UNUSED char **command)
 {
     printf("Login command\n");
     create_add_request_to_list(client->requests_sent, LOGGED_IN,

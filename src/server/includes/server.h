@@ -14,6 +14,7 @@
     #include "management_socket.h"
     #include "request.h"
     #include "client.h"
+    #include "messages.h"
     #define UNUSED __attribute__((unused))
 
 
@@ -22,7 +23,9 @@ typedef struct server_s {
     int port;
     int socket;
     select_t *select_config;
+    client_list_t *clients_loaded;
     client_list_t *clients;
+    message_list_t *messages;
 } server_t;
 
 typedef struct command_s {

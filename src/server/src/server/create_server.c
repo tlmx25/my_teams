@@ -8,6 +8,20 @@
 #include <stdlib.h>
 #include "server.h"
 
+static server_t *create_server_2(server_t *server)
+{
+    server->clients_loaded = create_client_list();
+    server->clients = create_client_list();
+    server->messages = create_message_list();
+    if (server->clients == NULL || server->clients_loaded == NULL
+        || server->messages == NULL) {
+        delete_server(server);
+        return NULL;
+    }
+    load_client_list(server->clients_loaded);
+    load_messages_to_list(server->messages);
+    return server;
+}
 
 server_t *create_server(int port)
 {
@@ -28,6 +42,5 @@ server_t *create_server(int port)
         return NULL;
     }
     server->select_config->max_fd = server->socket;
-    server->clients = create_client_list();
-    return server;
+    return create_server_2(server);
 }

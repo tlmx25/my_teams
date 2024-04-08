@@ -21,4 +21,5 @@ void add_client_to_list(client_list_t *list, client_t *client)
         list->tail = client;
         client->next = NULL;
     }
+    list->size++;
 }
