@@ -56,3 +56,18 @@ void save_client_list(client_list_t *list)
         save_client(tmp, fd);
     fclose(fd);
 }
+
+void add_client_to_save(client_t *client)
+{
+    FILE *fd;
+
+    if (create_directory_if_not_exists(SAVE_DIR) == -1)
+        return;
+    fd = fopen(CLIENT_FILE, "a+");
+    if (fd == NULL) {
+        perror("open");
+        return;
+    }
+    save_client(client, fd);
+    fclose(fd);
+}

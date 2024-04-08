@@ -143,4 +143,13 @@ void save_client_list(client_list_t *list);
  * @param list list to store the loaded clients
  */
 void load_client_list(client_list_t *list);
+
+int create_directory_if_not_exists(const char *dir_path);
+
+/**
+ * @brief Add a new client to save
+ *
+ * @param client client to add to save
+ */
+void add_client_to_save(client_t *client);
 #endif //PRIVATE_TEAMS_CLIENT_H

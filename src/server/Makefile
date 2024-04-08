@@ -13,6 +13,7 @@ VPATH += src/
 VPATH += src/client/
 VPATH += src/server/
 VPATH += src/commands/
+VPATH += src/messages/
 
 SRC := $(shell find ../common/ -name '*.c' -exec basename {} \;)
 SRC += main.c
@@ -30,6 +31,12 @@ SRC += manage_requests.c
 SRC += login_command.c
 SRC += save_client.c
 SRC += load_client.c
+SRC += create_message.c
+SRC += delete_message.c
+SRC += add_message.c
+SRC += get_message.c
+SRC += save_message.c
+SRC += load_message.c
 
 CFLAGS := -Wall -Wextra -iquote ../../includes/ -iquote ../../libs/myteams
 CFLAGS += -iquote includes/
