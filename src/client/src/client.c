@@ -12,28 +12,12 @@
 #include "socket.h"
 #include "my.h"
 
-static int command_error_handling(char **command)
-{
-    for (int i = 1; command[i]; i++) {
-        if (command[i][0] != '"' ||
-            command[i][strlen(command[i]) - 2] != '"') {
-            return 1;
-        }
-    }
-    return 0;
-}
-
 static void process_command(client_t *client, char *line)
 {
-    char **command = my_str_to_word_array(line, " \t");
-    int check_error = 0;
+    char **command = parse_arguments(line);
 
-    if (command == NULL)
-        return;
-    if (my_arrsize((char const **)command) > 1)
-        check_error = command_error_handling(command);
-    if (check_error == 1) {
-        printf("Error: Command must be between quotes\n");
+    if (command_error_handling(command) == 1) {
+        printf("Invalid command\n");
         free_tab(command);
         return;
     }
