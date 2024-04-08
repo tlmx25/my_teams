@@ -10,7 +10,8 @@
 #include <stdlib.h>
 #include "messages.h"
 
-message_t *create_message(char *sender_uuid, char *receiver_uuid, char *message)
+message_t *create_message(char *sender_uuid, char *receiver_uuid,
+    char *message)
 {
     message_t *new_message = calloc(sizeof(message_t), 1);
 

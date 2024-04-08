@@ -7,7 +7,8 @@
 
 #include "messages.h"
 
-message_t *get_message(message_list_t *list, uuid_t uuid_sender, uuid_t uuid_receiver)
+message_t *get_message(message_list_t *list, uuid_t uuid_sender,
+    uuid_t uuid_receiver)
 {
     message_t *tmp = list->head;
 

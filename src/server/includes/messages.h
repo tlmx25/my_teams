@@ -42,7 +42,8 @@ typedef struct message_list_s {
  * @param message message
  * @return message_t*
  */
-message_t *create_message(char *sender_uuid, char *receiver_uuid, char *message);
+message_t *create_message(char *sender_uuid, char *receiver_uuid,
+    char *message);
 
 /**
  * @brief Create a new message from save of message
@@ -97,7 +98,8 @@ void create_add_message(message_list_t *list, char *sender_uuid,
  * @param uuid_receiver
  * @return message_t* corresponding message or NULL if not found
  */
-message_t *get_message(message_list_t *list, uuid_t uuid_sender, uuid_t uuid_receiver);
+message_t *get_message(message_list_t *list, uuid_t uuid_sender,
+    uuid_t uuid_receiver);
 
 /**
  * @brief save a message to a file
