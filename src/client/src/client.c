@@ -7,17 +7,36 @@
 
 #include <stdlib.h>
 #include <stdio.h>
-#include "client.h"
+#include <string.h>
+#include "client_cli.h"
 #include "socket.h"
 #include "my.h"
 
-//TODO: ajouter gestion d'erreur ex ....
+static int command_error_handling(char **command)
+{
+    for (int i = 1; command[i]; i++) {
+        if (command[i][0] != '"' ||
+            command[i][strlen(command[i]) - 2] != '"') {
+            return 1;
+        }
+    }
+    return 0;
+}
+
 static void process_command(client_t *client, char *line)
 {
     char **command = my_str_to_word_array(line, " \t");
+    int check_error = 0;
 
     if (command == NULL)
         return;
+    if (my_arrsize((char const **)command) > 1)
+        check_error = command_error_handling(command);
+    if (check_error == 1) {
+        printf("Error: Command must be between quotes\n");
+        free_tab(command);
+        return;
+    }
     line = my_array_to_str_separator((char const **)command, "\r");
     create_add_request_to_list(client->requests_to_send, NONE, 200, line);
     free_tab(command);
@@ -43,6 +62,7 @@ static void read_stdin(client_t *client)
 static void read_server_response(client_t *client)
 {
     request_t *req;
+
     if (!FD_ISSET(client->fd_server, &client->config_select->readfds))
         return;
     req = read_socket(client->fd_server);

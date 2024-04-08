@@ -8,7 +8,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "request.h"
-#include "client.h"
+#include "client_cli.h"
 
 client_t *create_client(char *ip, int port)
 {

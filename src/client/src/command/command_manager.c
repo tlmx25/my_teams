@@ -5,7 +5,7 @@
 ** command_manger
 */
 
-#include "client.h"
+#include "client_cli.h"
 #include "command_client.h"
 
 static const command_t COMMANDS[] = {
