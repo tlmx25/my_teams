@@ -38,7 +38,7 @@ void prv_msg_rcvd_command(UNUSED client_t *client, request_t *request)
     char **args = get_request_nb_arg(request, 2);
 
     if (args == NULL) {
-        printf("Invalid number of arguments for private message received command\n");
+        printf("Invalid number of arguments\n");
         return;
     }
     client_event_private_message_received(args[0], args[1]);
