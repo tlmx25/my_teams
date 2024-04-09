@@ -13,7 +13,6 @@ context_t *create_context(char const *thread, char const *team,
 {
     context_t *context = malloc(sizeof(context_t));
 
-
     if (context == NULL)
         return NULL;
     if (thread) {

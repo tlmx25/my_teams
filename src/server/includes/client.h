@@ -186,7 +186,8 @@ client_t *duplicate_client(client_t *client);
  * @param channel channel uuid
  * @return context_t*
  */
-context_t *create_context(char const *thread, char const *team, char const *channel);
+context_t *create_context(char const *thread, char const *team,
+    char const *channel);
 
 /**
  * @brief delete a context
@@ -212,5 +213,5 @@ void set_context(client_t *client, context_t *context);
  * @param channel channel uuid
  */
 void add_context(client_t *client, char const *thread, char const *team,
-char const *channel);
+    char const *channel);
 #endif //PRIVATE_TEAMS_CLIENT_H
