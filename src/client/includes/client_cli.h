@@ -10,6 +10,7 @@
 #ifndef PRIVATE_TEAMS_CLIENT_H
     #define PRIVATE_TEAMS_CLIENT_H
     #include "management_socket.h"
+    #include <stdlib.h>
     #define ERROR 84
     #define UNUSED __attribute__((unused))
     #include "actions.h"

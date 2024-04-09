@@ -25,6 +25,12 @@ SRC += command_manager.c
 SRC += logged_in_command.c
 SRC += print_error_command.c
 SRC += parsing.c
+SRC += creation_commands.c
+SRC += error_commands.c
+SRC += msg_commands.c
+SRC += nt_creation_commands.c
+SRC += nt_print_commands.c
+SRC += print_commands.c
 
 CFLAGS := -Wall -Wextra -I ../../includes/ -I ../../libs/myteams/
 CFLAGS += -iquote includes/

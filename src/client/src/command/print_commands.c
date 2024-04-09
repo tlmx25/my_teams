@@ -65,6 +65,6 @@ void print_replies_command(UNUSED client_t *client, request_t *request)
         printf("Invalid number of arguments for print replies command\n");
         return;
     }
-    client_event_print_replies(args[0], args[1], args[2], args[3]);
+    client_thread_print_replies(args[0], args[1], args[2], args[3]);
     free(args);
 }

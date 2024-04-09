@@ -27,7 +27,7 @@ static const command_t COMMANDS[] = {
     {UNKNOWN_THREAD, &error_thread_command},
     {UNKNOWN_USER, &error_user_command},
     {UNAUTHORIZED, &error_unauthorized_command},
-    {ERROR_ALREADY_EXISTS, &error_existing_client_command},
+    {ERROR_ALREADY_EXISTS, &print_error_existing_client_command},
     {NT_PRINT_USER, &nt_print_user_command},
     {NT_PRINT_TEAM, &nt_print_team_command},
     {NT_PRINT_CHANNEL, &nt_print_channel_command},
