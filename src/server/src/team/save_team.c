@@ -12,6 +12,7 @@
 static void save_team(team_t *team, FILE *file)
 {
     team_save_t save = {0};
+
     if (team == NULL || file == NULL)
         return;
     uuid_copy(save.uuid, team->uuid);

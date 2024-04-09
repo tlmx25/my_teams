@@ -11,6 +11,7 @@
 static void save_link(link_team_user_t *link, FILE *file)
 {
     link_team_user_save_t save;
+
     if (link == NULL || file == NULL)
         return;
     uuid_copy(save.team_uuid, link->team_uuid);

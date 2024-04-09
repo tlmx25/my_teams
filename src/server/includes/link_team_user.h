@@ -101,8 +101,8 @@ void remove_link_by_uuid(link_team_user_list_t *list, uuid_t team_uuid,
  * @param team_uuid
  * @param user_uuid
  */
-void remove_link_by_uuid_str(link_team_user_list_t *list, char const *team_uuid,
-    char const *user_uuid);
+void remove_link_by_uuid_str(link_team_user_list_t *list,
+    char const *team_uuid, char const *user_uuid);
 
 
 /**

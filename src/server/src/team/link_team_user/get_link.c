@@ -9,7 +9,7 @@
 #include "link_team_user.h"
 
 link_team_user_t *get_link(link_team_user_list_t *list, uuid_t team_uuid,
-uuid_t user_uuid)
+    uuid_t user_uuid)
 {
     link_team_user_t *tmp;
 
