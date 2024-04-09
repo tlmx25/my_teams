@@ -38,9 +38,13 @@ static void read_stdin(client_t *client)
     read = getline(&line, &len, stdin);
     if (read == -1)
         return;
-    if (my_strcmp(line, "/stop\n") == 0)
+    if (my_strcmp(line, "/stop\n") == 0) {
         client->is_running = false;
+        free(line);
+        return;
+    }
     process_command(client, line);
+    free(line);
 }
 
 static void read_server_response(client_t *client)
