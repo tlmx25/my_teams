@@ -38,4 +38,14 @@ void error_existing_client_command(UNUSED client_t *client,
 void creation_team_command(UNUSED client_t *client, request_t *request);
 void creation_channel_command(UNUSED client_t *client, request_t *request);
 void creation_thread_command(UNUSED client_t *client, request_t *request);
+void nt_print_user_command(UNUSED client_t *client, request_t *request);
+void nt_print_team_command(UNUSED client_t *client, request_t *request);
+void nt_print_channel_command(UNUSED client_t *client, request_t *request);
+void nt_print_thread_command(UNUSED client_t *client, request_t *request);
+void nt_team_created_command(UNUSED client_t *client, request_t *request);
+void nt_channel_created_command(UNUSED client_t *client, request_t *request);
+void nt_thread_created_command(UNUSED client_t *client, request_t *request);
+void nt_print_reply_command(UNUSED client_t *client, request_t *request);
+void nt_print_sub_command(UNUSED client_t *client, request_t *request);
+void nt_print_unsub_command(UNUSED client_t *client, request_t *request);
 #endif //PRIVATE_TEAMS_COMMAND_CLIENT_H

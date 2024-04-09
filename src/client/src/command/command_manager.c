@@ -28,6 +28,16 @@ static const command_t COMMANDS[] = {
     {UNKNOWN_USER, &error_user_command},
     {UNAUTHORIZED, &error_unauthorized_command},
     {ERROR_ALREADY_EXISTS, &error_existing_client_command},
+    {NT_PRINT_USER, &nt_print_user_command},
+    {NT_PRINT_TEAM, &nt_print_team_command},
+    {NT_PRINT_CHANNEL, &nt_print_channel_command},
+    {NT_PRINT_THREAD, &nt_print_thread_command},
+    {NT_TEAM_CREATED, &nt_team_created_command},
+    {NT_CHANNEL_CREATED, &nt_channel_created_command},
+    {NT_THREAD_CREATED, &nt_thread_created_command},
+    {NT_PRINT_REPLY, &nt_print_reply_command},
+    {NT_PRINT_SUB, &nt_print_sub_command},
+    {NT_PRINT_UNSUB, &nt_print_unsub_command},
     {PRINT_ERROR, &print_error_command},
     {NONE, NULL}
 };
