@@ -181,7 +181,7 @@ client_t *duplicate_client(client_t *client);
 /**
  * @brief Create a new context
  *
- * @param thread thread uuid
+ * @param thread team uuid
  * @param team team uuid
  * @param channel channel uuid
  * @return context_t*
@@ -208,7 +208,7 @@ void set_context(client_t *client, context_t *context);
  * @brief create and set a context to a client
  *
  * @param client client to add the context to
- * @param thread thread uuid
+ * @param thread team uuid
  * @param team team uuid
  * @param channel channel uuid
  */

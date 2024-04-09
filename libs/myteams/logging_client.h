@@ -28,7 +28,7 @@
 /*
 ** To receive team related events you MUST be subscribed to the team
 ** Ex: to receive client_event_thread_reply_received you must be subscribed to
-** the team, that have the channel, that have the thread,that got the new reply
+** the team, that have the channel, that have the team,that got the new reply
 */
 
 /*
@@ -71,9 +71,9 @@ int client_event_private_message_received(
     char const *message_body);
 
 /**
-** @brief Must be called when a new reply is posted in a thread
+** @brief Must be called when a new reply is posted in a team
 ** @param team_uuid The id of the team this reply is in
-** @param thread_uuid The id of the thread this reply is in
+** @param thread_uuid The id of the team this reply is in
 ** @param user_uuid The id of the user that created the reply
 ** @param reply_body The reply body
 **
@@ -116,12 +116,12 @@ int client_event_channel_created(
     char const *channel_description);
 
 /**
-** @brief Must be called when a thread is created inside of a channel
-** @param thread_uuid The id of the created thread
-** @param user_uuid The id of the user who created the thread
-** @param thread_timestamp The unix timestamp of the thread creation
-** @param thread_title The title of the created thread
-** @param thread_body The body of the created thread
+** @brief Must be called when a team is created inside of a channel
+** @param thread_uuid The id of the created team
+** @param user_uuid The id of the user who created the team
+** @param thread_timestamp The unix timestamp of the team creation
+** @param thread_title The title of the created team
+** @param thread_body The body of the created team
 **
 ** Commands:
 ** /create "thread_title" "thread_body"
@@ -190,13 +190,13 @@ int client_team_print_channels(
 /**
 ** @brief Must be called when you requested a list of threads from the server
 ** ex: asking the threads in a channel
-** This function should be called one per thread in the list
+** This function should be called one per team in the list
 ** This function should be called even if the list only has one entry
-** @param thread_uuid The id of a thread
-** @param user_uuid The id of the user who created a thread
-** @param thread_timestamp The unix timestamp of a thread creation
-** @param thread_title The title of a thread
-** @param thread_body The body of a thread
+** @param thread_uuid The id of a team
+** @param user_uuid The id of the user who created a team
+** @param thread_timestamp The unix timestamp of a team creation
+** @param thread_title The title of a team
+** @param thread_body The body of a team
 **
 ** Commands:
 ** /list
@@ -210,10 +210,10 @@ int client_channel_print_threads(
 
 /**
 ** @brief Must be called when you requested a list of replies from the server
-** ex: asking the replies in a thread
+** ex: asking the replies in a team
 ** This function should be called one per reply in the list
 ** This function should be called even if the list only has one entry
-** @param thread_uuid The id of the thread a reply belongs to
+** @param thread_uuid The id of the team a reply belongs to
 ** @param user_uuid The id of the user who created a reply
 ** @param reply_timestamp The unix timestamp of a reply creation
 ** @param reply_body The body of a reply
@@ -263,7 +263,7 @@ int client_error_unknown_team(char const *team_uuid);
 
 /**
 ** @brief Must be called when the user try to do an action
-** with a channel that does not exist (list threads, create thread, etc...)
+** with a channel that does not exist (list threads, create team, etc...)
 ** @param channel_uuid The id that was given and does not exist
 **
 ** Commands:
@@ -276,7 +276,7 @@ int client_error_unknown_channel(char const *channel_uuid);
 
 /**
 ** @brief Must be called when the user try to do an action
-** with a thread that does not exist (list replies, create reply, etc...)
+** with a team that does not exist (list replies, create reply, etc...)
 ** @param thread_uuid The id that was given and does not exist
 **
 ** Commands:
@@ -301,7 +301,7 @@ int client_error_unknown_user(char const *user_uuid);
 /**
 ** @brief Must be called when the user try to do an action he is not allowed
 ** to perform.
-** Ex: create a thread in a team he is not subscribed
+** Ex: create a team in a team he is not subscribed
 ** Ex: create a team when he is not logged in
 **
 ** Commands:
@@ -369,13 +369,13 @@ int client_print_channel(
     char const *channel_description);
 
 /**
-** @brief Must be called when you requested an individual thread
-** ex: get the current used thread
-** @param thread_uuid The id of the thread
-** @param user_uuid The id of the user who created the thread
-** @param thread_timestamp The unix timestamp of the creation of the thread
-** @param thread_title The title of the thread
-** @param thread_body The body of the thread
+** @brief Must be called when you requested an individual team
+** ex: get the current used team
+** @param thread_uuid The id of the team
+** @param user_uuid The id of the user who created the team
+** @param thread_timestamp The unix timestamp of the creation of the team
+** @param thread_title The title of the team
+** @param thread_body The body of the team
 **
 ** Commands:
 ** /info
@@ -416,12 +416,12 @@ int client_print_channel_created(
     char const *channel_description);
 
 /**
-** @brief Must be called when you create a thread successfully
-** @param thread_uuid The id of the thread that was created
-** @param user_uuid The id of the user who created the thread
-** @param thread_timestamp The unix timestamp of the thread creation
-** @param thread_title The title of the thread that was created
-** @param thread_body The body of the thread that was created
+** @brief Must be called when you create a team successfully
+** @param thread_uuid The id of the team that was created
+** @param user_uuid The id of the user who created the team
+** @param thread_timestamp The unix timestamp of the team creation
+** @param thread_title The title of the team that was created
+** @param thread_body The body of the team that was created
 **
 ** Commands:
 ** /create "thread_title" "thread_body"
@@ -435,7 +435,7 @@ int client_print_thread_created(
 
 /**
 ** @brief Must be called when you create a reply successfully
-** @param thread_uuid The id of the thread this reply was created in
+** @param thread_uuid The id of the team this reply was created in
 ** @param user_uuid The id of the user who created the reply
 ** @param reply_timestamp The unix timestamp of the created reply
 ** @param reply_body The body of the created reply

@@ -38,7 +38,7 @@ void error_thread_command(UNUSED client_t *client, request_t *request)
     char **args = get_request_nb_arg(request, 1);
 
     if (args == NULL) {
-        printf("Invalid number of arguments for error thread command\n");
+        printf("Invalid number of arguments for error team command\n");
         return;
     }
     client_error_unknown_thread(args[0]);

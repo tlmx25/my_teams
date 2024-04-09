@@ -13,13 +13,15 @@ static server_t *create_server_2(server_t *server)
     server->clients_loaded = create_client_list();
     server->clients = create_client_list();
     server->messages = create_message_list();
+    server->teams = create_team_list();
     if (server->clients == NULL || server->clients_loaded == NULL
-        || server->messages == NULL) {
+        || server->messages == NULL || server->teams == NULL) {
         delete_server(server);
         return NULL;
     }
     load_client_list(server->clients_loaded);
     load_messages_to_list(server->messages);
+    load_team_list(server->teams);
     return server;
 }
 

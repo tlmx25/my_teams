@@ -38,7 +38,7 @@ void creation_thread_command(UNUSED client_t *client, request_t *request)
     char **args = get_request_nb_arg(request, 5);
 
     if (args == NULL) {
-        printf("Invalid number of arguments for creation thread command\n");
+        printf("Invalid number of arguments for creation team command\n");
         return;
     }
     client_event_thread_created(args[0], args[1], args[2], args[3], args[4]);

@@ -26,7 +26,7 @@ void thread_reply_rcvd_command(UNUSED client_t *client, request_t *request)
     char **args = get_request_nb_arg(request, 4);
 
     if (args == NULL) {
-        printf("Invalid number of arguments for thread reply command\n");
+        printf("Invalid number of arguments for team reply command\n");
         return;
     }
     client_thread_print_reply(args[0], args[1], args[2], args[3]);
