@@ -65,7 +65,7 @@ static size_t set_check(int *check, size_t len, char const *str,
     return i;
 }
 
-static int fill_tab(char **tab, size_t len, char const *str, char *separators, int *is_in_quotes)
+static int fill_tab(char **tab, size_t len, char const *str, char *separators)
 {
     int z = 0;
     int check;
@@ -94,7 +94,6 @@ char **my_str_to_word_array(char const *str, char *separators)
     size_t len = my_strlen(str);
     int nb_word = count_word_arr(str, separators);
     char **tab = malloc(sizeof(char *) * (nb_word + 1));
-    int is_in_quotes = 0;
 
     for (int i = 0; i <= nb_word; i++)
         tab[i] = NULL;
@@ -102,7 +101,7 @@ char **my_str_to_word_array(char const *str, char *separators)
         free(tab);
         return NULL;
     }
-    if (fill_tab(tab, len, str, separators, &is_in_quotes) == 84) {
+    if (fill_tab(tab, len, str, separators) == 84) {
         free_tab(tab);
         return NULL;
     }
