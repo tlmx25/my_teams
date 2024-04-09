@@ -39,6 +39,7 @@ SRC += get_message.c
 SRC += save_message.c
 SRC += load_message.c
 SRC += send_notification.c
+SRC += create_delete_context.c
 
 CFLAGS := -Wall -Wextra -iquote ../../includes/ -iquote ../../libs/myteams
 CFLAGS += -iquote includes/

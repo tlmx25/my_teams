@@ -10,6 +10,11 @@
 #include "my.h"
 #include "client.h"
 
+static void set_client(client_t *client)
+{
+    client->context = NULL;
+}
+
 client_t *create_client(int fd, char *username, char *password, char *uuid)
 {
     client_t *client = malloc(sizeof(client_t));
@@ -28,6 +33,7 @@ client_t *create_client(int fd, char *username, char *password, char *uuid)
     client->requests_sent = create_request_list();
     client->next = NULL;
     client->prev = NULL;
+    set_client(client);
     return client;
 }
 

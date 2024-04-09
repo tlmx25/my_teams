@@ -19,6 +19,13 @@ typedef enum {
     true
 } bool;
 
+typedef struct context_s {
+    uuid_t uuid_team;
+    uuid_t uuid_channel;
+    uuid_t uuid_thread;
+    int nb_uuid;
+} context_t;
+
 typedef struct client_s {
     bool is_connected;
     uuid_t uuid;
@@ -27,6 +34,7 @@ typedef struct client_s {
     char *password;
     request_list_t *requests_received;
     request_list_t *requests_sent;
+    context_t *context;
     struct client_s *next;
     struct client_s *prev;
 } client_t;
@@ -168,4 +176,41 @@ client_t *get_client_by_name(client_list_t *list, char const *name);
  * @return client_t* duplicated client
  */
 client_t *duplicate_client(client_t *client);
+
+
+/**
+ * @brief Create a new context
+ *
+ * @param thread thread uuid
+ * @param team team uuid
+ * @param channel channel uuid
+ * @return context_t*
+ */
+context_t *create_context(char const *thread, char const *team, char const *channel);
+
+/**
+ * @brief delete a context
+ *
+ * @param context context to delete
+ */
+void delete_context(context_t *context);
+
+/**
+ * @brief set a context to a client
+ *
+ * @param client client to set the context to
+ * @param context context to set
+ */
+void set_context(client_t *client, context_t *context);
+
+/**
+ * @brief create and set a context to a client
+ *
+ * @param client client to add the context to
+ * @param thread thread uuid
+ * @param team team uuid
+ * @param channel channel uuid
+ */
+void add_context(client_t *client, char const *thread, char const *team,
+char const *channel);
 #endif //PRIVATE_TEAMS_CLIENT_H
