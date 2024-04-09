@@ -16,6 +16,7 @@ void save_message(message_t *message, FILE *file)
     uuid_copy(save.sender_uuid, message->sender_uuid);
     uuid_copy(save.receiver_uuid, message->receiver_uuid);
     my_strncpy(save.message, message->message, MAX_BODY_LENGTH);
+    save.timestamp = message->timestamp;
     fwrite(&save, sizeof(message_save_t), 1, file);
 }
 

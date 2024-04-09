@@ -17,7 +17,7 @@
 typedef enum {
     false,
     true
-} bool;
+} bool_t;
 
 typedef struct context_s {
     uuid_t uuid_team;
@@ -27,7 +27,7 @@ typedef struct context_s {
 } context_t;
 
 typedef struct client_s {
-    bool is_connected;
+    bool_t is_connected;
     uuid_t uuid;
     int fd;
     char *username;

@@ -21,7 +21,7 @@
 
 
 typedef struct server_s {
-    bool is_running;
+    bool_t is_running;
     int port;
     int socket;
     select_t *select_config;
@@ -35,7 +35,7 @@ typedef struct server_s {
 typedef struct command_s {
     char *command;
     void (*func)(server_t *server, client_t *client, char **command);
-    bool need_logged;
+    bool_t need_logged;
     int nb_args;
 } command_t;
 

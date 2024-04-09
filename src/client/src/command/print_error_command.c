@@ -15,7 +15,7 @@ void print_error_command(UNUSED client_t *client, request_t *request)
 }
 
 void print_error_existing_client_command(UNUSED client_t *client,
-    request_t *request)
+    UNUSED request_t *request)
 {
     client_error_already_exist();
 }

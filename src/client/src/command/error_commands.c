@@ -7,6 +7,7 @@
 
 #include <stdio.h>
 #include "client_cli.h"
+#include "my.h"
 #include "logging_client.h"
 
 void error_team_command(UNUSED client_t *client, request_t *request)
@@ -18,7 +19,7 @@ void error_team_command(UNUSED client_t *client, request_t *request)
         return;
     }
     client_error_unknown_team(args[0]);
-    free(args);
+    free_tab(args);
 }
 
 void error_channel_command(UNUSED client_t *client, request_t *request)
@@ -30,7 +31,7 @@ void error_channel_command(UNUSED client_t *client, request_t *request)
         return;
     }
     client_error_unknown_channel(args[0]);
-    free(args);
+    free_tab(args);
 }
 
 void error_thread_command(UNUSED client_t *client, request_t *request)
@@ -42,7 +43,7 @@ void error_thread_command(UNUSED client_t *client, request_t *request)
         return;
     }
     client_error_unknown_thread(args[0]);
-    free(args);
+    free_tab(args);
 }
 
 void error_user_command(UNUSED client_t *client, request_t *request)
@@ -54,7 +55,7 @@ void error_user_command(UNUSED client_t *client, request_t *request)
         return;
     }
     client_error_unknown_user(args[0]);
-    free(args);
+    free_tab(args);
 }
 
 void error_unauthorized_command(UNUSED client_t *client,

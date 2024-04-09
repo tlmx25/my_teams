@@ -17,6 +17,7 @@
 typedef struct message_s {
     uuid_t sender_uuid;
     uuid_t receiver_uuid;
+    time_t timestamp;
     char message[MAX_BODY_LENGTH + 1];
     struct message_s *next;
     struct message_s *prev;
@@ -25,6 +26,7 @@ typedef struct message_s {
 typedef struct message_save_s {
     uuid_t sender_uuid;
     uuid_t receiver_uuid;
+    time_t timestamp;
     char message[MAX_BODY_LENGTH + 1];
 } message_save_t;
 

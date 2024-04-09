@@ -21,6 +21,7 @@ message_t *create_message(char *sender_uuid, char *receiver_uuid,
     uuid_parse(receiver_uuid, new_message->receiver_uuid);
     memset(new_message->message, 0, MAX_BODY_LENGTH + 1);
     my_strncpy(new_message->message, message, MAX_BODY_LENGTH);
+    new_message->timestamp = time(NULL);
     new_message->next = NULL;
     new_message->prev = NULL;
     return new_message;
@@ -34,6 +35,7 @@ message_t *create_message_from_save(message_save_t save)
         return NULL;
     uuid_copy(new_message->sender_uuid, save.sender_uuid);
     uuid_copy(new_message->receiver_uuid, save.receiver_uuid);
+    new_message->timestamp = save.timestamp;
     memset(new_message->message, 0, MAX_BODY_LENGTH + 1);
     my_strncpy(new_message->message, save.message, MAX_BODY_LENGTH);
     new_message->next = NULL;

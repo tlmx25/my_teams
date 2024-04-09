@@ -7,6 +7,7 @@
 
 #include <stdio.h>
 #include "client_cli.h"
+#include "my.h"
 #include "logging_client.h"
 
 void logged_in_command(UNUSED client_t *client, request_t *request)
@@ -18,7 +19,7 @@ void logged_in_command(UNUSED client_t *client, request_t *request)
         return;
     }
     client_event_logged_in(args[0], args[1]);
-    free(args);
+    free_tab(args);
 }
 
 void logged_out_command(UNUSED client_t *client, request_t *request)
@@ -30,5 +31,5 @@ void logged_out_command(UNUSED client_t *client, request_t *request)
         return;
     }
     client_event_logged_out(args[0], args[1]);
-    free(args);
+    free_tab(args);
 }
