@@ -116,7 +116,7 @@ int client_event_channel_created(
     char const *channel_description);
 
 /**
-** @brief Must be called when a thread is created inside of a channel
+** @brief Must be called when a thread is cr2FA23892-B80B-40D6-8544-4C1C3923E022eated inside of a channel
 ** @param thread_uuid The id of the created thread
 ** @param user_uuid The id of the user who created the thread
 ** @param thread_timestamp The unix timestamp of the thread creation

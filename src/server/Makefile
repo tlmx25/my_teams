@@ -8,12 +8,40 @@
 MAKEFLAGS += -silent
 CC = gcc
 
-VPATH += .
+VPATH := ../common/
+VPATH += src/
+VPATH += src/client/
+VPATH += src/server/
+VPATH += src/commands/
+VPATH += src/messages/
+VPATH += src/request/
 
+SRC := $(shell find ../common/ -name '*.c' -exec basename {} \;)
 SRC += main.c
+SRC += create_client.c
+SRC += add_client.c
+SRC += free_client.c
+SRC += remove_client.c
+SRC += get_client.c
+SRC += server.c
+SRC += create_server.c
+SRC += delete_server.c
+SRC += server_manager.c
+SRC += command_manager.c
+SRC += manage_requests.c
+SRC += login_command.c
+SRC += save_client.c
+SRC += load_client.c
+SRC += create_message.c
+SRC += delete_message.c
+SRC += add_message.c
+SRC += get_message.c
+SRC += save_message.c
+SRC += load_message.c
+SRC += send_notification.c
 
-
-CFLAGS = -Wall -Wextra -I ../../includes/ -I ../../libs/myteams/
+CFLAGS := -Wall -Wextra -iquote ../../includes/ -iquote ../../libs/myteams
+CFLAGS += -iquote includes/
 
 LDFLAGS := -luuid -L ../../libs/ -lmy -L${CURDIR}/../../libs/myteams
 LDFLAGS += -l:libmyteams.so -Wl,-rpath=${CURDIR}/../../libs/myteams
