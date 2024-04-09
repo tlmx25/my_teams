@@ -16,6 +16,7 @@ void delete_server(server_t *server)
     delete_client_list(server->clients);
     delete_client_list(server->clients_loaded);
     delete_message_list(server->messages);
+    delete_team_list(server->teams);
     free(server->select_config);
     free(server);
 }

@@ -15,6 +15,7 @@
     #include "request.h"
     #include "client.h"
     #include "messages.h"
+    #include "team.h"
     #define UNUSED __attribute__((unused))
 
 
@@ -26,6 +27,7 @@ typedef struct server_s {
     client_list_t *clients_loaded;
     client_list_t *clients;
     message_list_t *messages;
+    team_list_t *teams;
 } server_t;
 
 typedef struct command_s {

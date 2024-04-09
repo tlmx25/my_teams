@@ -42,12 +42,12 @@ int server_event_channel_created(
     char const *channel_name);
 
 /**
-** @brief Must be called when a new thread is created
-** @param channel_uuid The id of the channel this thread was created in
-** @param thread_uuid The id of the created thread
-** @param user_uuid The id of the user who created the thread
-** @param thread_title The title of the created thread
-** @param thread_body The body of the created thread
+** @brief Must be called when a new team is created
+** @param channel_uuid The id of the channel this team was created in
+** @param thread_uuid The id of the created team
+** @param user_uuid The id of the user who created the team
+** @param thread_title The title of the created team
+** @param thread_body The body of the created team
 **
 ** Commands:
 ** /create "thread_title" "thread_body"
@@ -60,8 +60,8 @@ int server_event_thread_created(
     char const *thread_body);
 
 /**
-** @brief Must be called when a new reply is created in a thread
-** @param thread_uuid The id of the thread this message was created in
+** @brief Must be called when a new reply is created in a team
+** @param thread_uuid The id of the team this message was created in
 ** @param user_uuid The id of the user who created the reply
 ** @param reply_body The body of the created reply
 **
