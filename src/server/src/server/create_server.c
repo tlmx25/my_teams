@@ -14,7 +14,8 @@ static server_t *create_server_2(server_t *server)
     server->clients = create_client_list();
     server->messages = create_message_list();
     server->teams = create_team_list();
-    if (!server->clients  || !server->clients_loaded || !server->link_team_user
+    if (!server->clients || !server->clients_loaded
+        || !server->link_team_user
         || !server->messages || !server->teams) {
         delete_server(server);
         return NULL;
