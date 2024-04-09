@@ -24,7 +24,7 @@ void save_link_list(link_team_user_list_t *list)
     link_team_user_t *tmp;
     FILE *file;
 
-    if (list == NULL || file == NULL)
+    if (list == NULL)
         return;
     if (create_directory_if_not_exists(SAVE_DIR) == -1)
         return;
