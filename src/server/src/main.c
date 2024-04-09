@@ -7,7 +7,6 @@
 
 #include <stdio.h>
 #include "my.h"
-#include "messages.h"
 #include "server.h"
 
 static int print_help(void)

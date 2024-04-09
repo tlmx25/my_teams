@@ -79,4 +79,17 @@ void manage_request(server_t *server, client_t *client);
  */
 void command_manager(server_t *server, client_t *client, char **command);
 
+/**
+ * @brief Send a response error to a client
+ * @param client client to send to
+ * @param message message to send
+ */
+void send_error_response(client_t *client, char *message);
+
+/**
+ * @brief Send a request to all clients
+ * @param list list of clients
+ * @param request template of request to send
+ */
+void send_notification_all(client_list_t *list, request_t *request);
 #endif //PRIVATE_TEAMS_SERVER_H

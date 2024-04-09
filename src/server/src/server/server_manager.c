@@ -10,17 +10,20 @@
 #include <stdio.h>
 #include <netinet/in.h>
 #include "server.h"
+#include "logging_server.h"
 #include "my.h"
 
 static void check_read_client(server_t *server, client_t *client)
 {
     request_t *req = NULL;
+    char uuid_str[37] = {0};
 
     if (!FD_ISSET(client->fd, &server->select_config->readfds))
         return;
     req = read_socket(client->fd);
     if (req == NULL) {
-        printf("Client disconnected\n");
+        uuid_unparse(client->uuid, uuid_str);
+        server_event_user_logged_out(uuid_str);
         client->is_connected = false;
         return;
     }
