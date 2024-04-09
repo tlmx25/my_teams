@@ -72,7 +72,6 @@ void add_request_to_list(request_list_t *list, request_t *request);
  * @param uuid uuid of the request to remove
  */
 void remove_request_from_list(request_list_t *list, uuid_t uuid);
-#endif //PRIVATE_TEAMS_REQUEST_H
 
 /**
 * @brief free a request
@@ -121,3 +120,12 @@ char **get_request_nb_arg(const request_t *request, int nb_arg);
  */
 void create_add_request_to_list(request_list_t *list, action_t action,
     int code, char *body);
+
+/**
+ * @brief Duplicate a request
+ * @param request
+ * @return duplicated request
+ */
+request_t *duplicate_request(request_t *request);
+
+#endif //PRIVATE_TEAMS_REQUEST_H

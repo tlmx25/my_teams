@@ -7,12 +7,8 @@
 
 #include <uuid/uuid.h>
 #include <stdio.h>
-#include <unistd.h>
-#include <fcntl.h>
 #include <sys/stat.h>
-#include <sys/types.h>
 #include <string.h>
-#include <stdlib.h>
 #include "my.h"
 #include "client.h"
 

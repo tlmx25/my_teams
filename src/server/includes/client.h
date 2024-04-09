@@ -152,4 +152,20 @@ int create_directory_if_not_exists(const char *dir_path);
  * @param client client to add to save
  */
 void add_client_to_save(client_t *client);
+
+/**
+ * @brief get a client by name
+ * @param list  list to search in
+ * @param name name of the client
+ * @return  client_t* corresponding client or NULL if not found
+ */
+client_t *get_client_by_name(client_list_t *list, char const *name);
+
+/**
+ * @brief duplicate a client
+ *
+ * @param client client to duplicate
+ * @return client_t* duplicated client
+ */
+client_t *duplicate_client(client_t *client);
 #endif //PRIVATE_TEAMS_CLIENT_H

@@ -14,7 +14,7 @@
 //TODO: ajouter gestion d'erreur ex ....
 static void process_command(client_t *client, char *line)
 {
-    char **command = my_str_to_word_array(line, " \t");
+    char **command = my_str_to_word_array(line, " \t\n");
 
     if (command == NULL)
         return;

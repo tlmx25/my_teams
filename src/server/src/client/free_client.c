@@ -6,7 +6,7 @@
 */
 
 #include <stdlib.h>
-#include <stdio.h>
+#include "unistd.h"
 #include "client.h"
 
 void free_client(client_t *client)
@@ -19,6 +19,7 @@ void free_client(client_t *client)
         free(client->password);
     free_request_list(client->requests_received);
     free_request_list(client->requests_sent);
+    close(client->fd);
     free(client);
 }
 
