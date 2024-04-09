@@ -33,6 +33,15 @@ typedef struct command_s {
     void (*func)(client_t *, request_t *);
 } command_t;
 
+typedef struct parse_cmd_s {
+    char *cmd;
+    char **args;
+    int nb_args;
+    int in_quotes;
+    int start;
+    int check_error;
+} parse_cmd_t;
+
 /**
  * @brief Create a client object
  *
@@ -81,4 +90,20 @@ void create_add_request(client_t *client, char *msg);
  * @param request The request object
  */
 void command_manager(client_t *client, request_t *request);
+
+/**
+ * @brief Parse the command line
+ *
+ * @param line The command line
+ * @return char** The parsed command
+ */
+char **parse_arguments(char *line);
+
+/**
+ * @brief Check if the command is correct
+ *
+ * @param command The command to check
+ * @return int The return code
+ */
+int command_error_handling(char **command);
 #endif //PRIVATE_TEAMS_CLIENT_H

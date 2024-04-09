@@ -7,17 +7,20 @@
 
 #include <stdlib.h>
 #include <stdio.h>
-#include "client.h"
+#include <string.h>
+#include "client_cli.h"
 #include "socket.h"
 #include "my.h"
 
-//TODO: ajouter gestion d'erreur ex ....
 static void process_command(client_t *client, char *line)
 {
-    char **command = my_str_to_word_array(line, " \t");
+    char **command = parse_arguments(line);
 
-    if (command == NULL)
+    if (command_error_handling(command) == 1) {
+        printf("Invalid command\n");
+        free_tab(command);
         return;
+    }
     line = my_array_to_str_separator((char const **)command, "\r");
     create_add_request_to_list(client->requests_to_send, NONE, 200, line);
     free_tab(command);
@@ -43,6 +46,7 @@ static void read_stdin(client_t *client)
 static void read_server_response(client_t *client)
 {
     request_t *req;
+
     if (!FD_ISSET(client->fd_server, &client->config_select->readfds))
         return;
     req = read_socket(client->fd_server);

@@ -6,7 +6,7 @@
 */
 
 #include <stdlib.h>
-#include "client.h"
+#include "client_cli.h"
 
 void create_add_request(client_t *client, char *msg)
 {

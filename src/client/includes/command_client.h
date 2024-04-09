@@ -9,7 +9,7 @@
 
 #ifndef PRIVATE_TEAMS_COMMAND_CLIENT_H
     #define PRIVATE_TEAMS_COMMAND_CLIENT_H
-    #include "client.h"
+    #include "client_cli.h"
     #include "request.h"
 
 /**

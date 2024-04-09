@@ -5,7 +5,7 @@
 ** parse_request
 */
 
-#include "client.h"
+#include "request.h"
 #include "my.h"
 
 char **get_request_arg(const request_t *request)
