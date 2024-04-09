@@ -6,7 +6,7 @@
 */
 
 #include <stdio.h>
-#include "client.h"
+#include "client_cli.h"
 
 void print_error_command(UNUSED client_t *client, request_t *request)
 {

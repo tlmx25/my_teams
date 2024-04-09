@@ -9,7 +9,7 @@
 #include <netinet/in.h>
 #include <arpa/inet.h>
 #include <stdio.h>
-#include "client.h"
+#include "client_cli.h"
 
 int connect_to_server(client_t *client)
 {

@@ -6,7 +6,7 @@
 */
 
 #include <stdio.h>
-#include "client.h"
+#include "client_cli.h"
 #include "logging_client.h"
 
 void logged_in_command(UNUSED client_t *client, request_t *request)
