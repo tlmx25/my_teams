@@ -18,7 +18,6 @@ char *timestamp_to_str(time_t timestamp)
         return NULL;
     tm = localtime(&timestamp);
     strftime(buffer, 26, "%Y-%m-%d %H:%M:%S", tm);
-
     return buffer;
 }
 
