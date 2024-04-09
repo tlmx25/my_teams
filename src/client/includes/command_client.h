@@ -33,7 +33,7 @@ void error_channel_command(UNUSED client_t *client, request_t *request);
 void error_thread_command(UNUSED client_t *client, request_t *request);
 void error_user_command(UNUSED client_t *client, request_t *request);
 void error_unauthorized_command(UNUSED client_t *client, request_t *request);
-void error_existing_client_command(UNUSED client_t *client,
+void print_error_existing_client_command(UNUSED client_t *client,
     request_t *request);
 void creation_team_command(UNUSED client_t *client, request_t *request);
 void creation_channel_command(UNUSED client_t *client, request_t *request);
