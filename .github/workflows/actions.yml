@@ -1,4 +1,4 @@
-name: my_teams action
+name: Arcade action
 on:
   push:
     branches:
