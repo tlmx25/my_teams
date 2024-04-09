@@ -19,6 +19,7 @@ void free_client(client_t *client)
         free(client->password);
     free_request_list(client->requests_received);
     free_request_list(client->requests_sent);
+    delete_context(client->context);
     close(client->fd);
     free(client);
 }

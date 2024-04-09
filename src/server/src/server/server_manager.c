@@ -23,7 +23,8 @@ static void check_read_client(server_t *server, client_t *client)
     req = read_socket(client->fd);
     if (req == NULL) {
         uuid_unparse(client->uuid, uuid_str);
-        server_event_user_logged_out(uuid_str);
+        if (client->username)
+            server_event_user_logged_out(uuid_str);
         client->is_connected = false;
         return;
     }
