@@ -35,6 +35,4 @@
 .idea/
 vgcore*
 myteams_*
-*.log
-/src/server/coding-style-reports.log
-.save/*
+/coding-style-reports.log
