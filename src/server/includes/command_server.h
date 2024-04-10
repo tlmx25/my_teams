@@ -13,5 +13,6 @@
 
 void help_command(server_t *server, client_t *client, char **command);
 void login_command(server_t *server, client_t *client, char **command);
+void logout_command(server_t *server, client_t *client, char **command);
 
 #endif //PRIVATE_TEAMS_COMMAND_SERVER_H
