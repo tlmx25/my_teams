@@ -36,6 +36,7 @@ SRC += command_manager.c
 SRC += manage_requests.c
 SRC += login_command.c
 SRC += users_command.c
+SRC += user_command.c
 SRC += logout_command.c
 SRC += help_command.c
 SRC += save_client.c
