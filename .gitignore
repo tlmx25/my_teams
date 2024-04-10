@@ -40,5 +40,6 @@ myteams_*
 /src/server/coding-style-reports.log
 .save/*
 .vscode/*
+c_cpp_properties.json
 .vscode/
 /coding-style-reports.log
