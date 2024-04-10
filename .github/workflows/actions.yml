@@ -40,7 +40,7 @@ jobs:
 
   compilation:
     name: Compilation
-#    needs: check_coding_style
+    needs: check_coding_style
     runs-on: ubuntu-latest
     container: epitechcontent/epitest-docker
     timeout-minutes: 4

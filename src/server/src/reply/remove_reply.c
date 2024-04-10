@@ -2,17 +2,17 @@
 ** EPITECH PROJECT, 2024
 ** PRIVATE_TEAMS
 ** File description:
-** remove_thread
+** remove_reply
 */
 
 #include <stdlib.h>
-#include "thread_teams.h"
+#include "reply.h"
 
-void remove_thread_from_list(thread_list_t *list, thread_t *thread)
+void remove_reply_from_list(reply_list_t *list, reply_t *reply)
 {
-    thread_t *tmp;
+    reply_t *tmp;
 
-    if (list == NULL || thread == NULL)
+    if (list == NULL || reply == NULL)
         return;
     for (tmp = list->head; tmp; tmp = tmp->next);
     if (tmp == NULL)
@@ -26,18 +26,18 @@ void remove_thread_from_list(thread_list_t *list, thread_t *thread)
     if (tmp == list->tail)
         list->tail = tmp->prev;
     list->size--;
-    delete_thread(tmp);
+    delete_reply(tmp);
 }
 
-void remove_thread_by_uuid(thread_list_t *list, uuid_t uuid)
+void remove_reply_by_uuid(reply_list_t *list, uuid_t uuid)
 {
-    thread_t *tmp;
+    reply_t *tmp;
 
     if (list == NULL)
         return;
     for (tmp = list->head; tmp; tmp = tmp->next) {
         if (uuid_compare(tmp->uuid, uuid) == 0) {
-            remove_thread_from_list(list, tmp);
+            remove_reply_from_list(list, tmp);
             return;
         }
     }
