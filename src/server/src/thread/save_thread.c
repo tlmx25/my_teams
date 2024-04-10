@@ -7,7 +7,7 @@
 
 #include <stdlib.h>
 #include <stdio.h>
-#include "thread.h"
+#include "thread_teams.h"
 #include "my.h"
 
 static void save_thread(thread_t *thread, FILE *file)

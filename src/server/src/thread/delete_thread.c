@@ -6,7 +6,7 @@
 */
 
 #include <stdlib.h>
-#include "thread.h"
+#include "thread_teams.h"
 
 void delete_thread(thread_t *thread)
 {
