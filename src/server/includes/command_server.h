@@ -16,5 +16,6 @@ void login_command(server_t *server, client_t *client, char **command);
 void logout_command(server_t *server, client_t *client, char **command);
 void users_command(server_t *server, client_t *client, char **command);
 void user_command(server_t *server, client_t *client, char **command);
+void send_command(server_t *server, client_t *client, char **command);
 
 #endif //PRIVATE_TEAMS_COMMAND_SERVER_H
