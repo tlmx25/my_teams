@@ -38,3 +38,4 @@ myteams_*
 *.log
 /src/server/coding-style-reports.log
 .save/*
+.vscode/*
