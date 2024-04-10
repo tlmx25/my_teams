@@ -15,7 +15,7 @@ void remove_channel_from_list(channel_list_t *list, channel_t *channel)
     if (list == NULL || channel == NULL)
         return;
     tmp = list->head;
-    for(; tmp; tmp = tmp->next);
+    for (; tmp; tmp = tmp->next);
     if (tmp == NULL)
         return;
     if (tmp->prev)
