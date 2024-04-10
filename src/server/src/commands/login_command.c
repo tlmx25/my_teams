@@ -30,7 +30,7 @@ static void request_logged_in(server_t *server, client_t *client)
     body = my_strcat(client->username, "\r");
     uuid_unparse(client->uuid, uuid_str);
     body = my_strcat_free(body, uuid_str, 1, 0);
-    my_strncpy(request->body, body, 4095);
+    my_strncpy(request->body, body, MAX_BODY_LENGTH);
     free(body);
     send_notification_all(server->clients, request);
     free(request);
