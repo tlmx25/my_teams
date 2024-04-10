@@ -41,3 +41,4 @@ myteams_*
 .save/*
 .vscode/*
 .vscode/
+/coding-style-reports.log
