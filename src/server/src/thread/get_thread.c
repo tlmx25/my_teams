@@ -6,7 +6,7 @@
 */
 
 #include <stdlib.h>
-#include "thread.h"
+#include "thread_teams.h"
 #include "my.h"
 
 thread_t *get_thread_by_uuid(thread_list_t *list, uuid_t uuid)

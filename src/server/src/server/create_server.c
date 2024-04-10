@@ -15,6 +15,7 @@ static server_t *create_server_3(server_t *server)
     load_messages_to_list(server->messages);
     load_team_list(server->teams);
     load_link_list(server->link_team_user);
+    load_thread_list(server->threads);
     return server;
 }
 
@@ -26,6 +27,7 @@ static server_t *create_server_2(server_t *server)
     server->teams = create_team_list();
     server->link_team_user = create_link_list();
     server->channels = create_channel_list();
+    server->threads = create_thread_list();
     if (!server->clients || !server->clients_loaded
         || !server->link_team_user || !server->channels
         || !server->messages || !server->teams) {

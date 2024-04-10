@@ -2,13 +2,13 @@
 ** EPITECH PROJECT, 2024
 ** PRIVATE_TEAMS
 ** File description:
-** thread
+** thread_teams
 */
 
 #pragma once
 
-#ifndef PRIVATE_TEAMS_THREAD_H
-    #define PRIVATE_TEAMS_THREAD_H
+#ifndef PRIVATE_TEAMS_THREAD_TEAMS_H
+    #define PRIVATE_TEAMS_THREAD_TEAMS_H
     #include <uuid/uuid.h>
     #include <time.h>
     #define MAX_NAME_LENGTH 32
@@ -51,7 +51,7 @@ typedef struct thread_save_s {
  * @return thread_t* the created thread
  */
 thread_t *create_thread(char const *title, char const *message,
-    uuid_t creator_uuid, uuid_t channel_uuid);
+                        uuid_t creator_uuid, uuid_t channel_uuid);
 
 /**
  * @brief Create a thread list
@@ -140,4 +140,4 @@ void add_thread_to_save(thread_t *thread);
  * @param list list to store the loaded threads
  */
 void load_thread_list(thread_list_t *list);
-#endif //PRIVATE_TEAMS_THREAD_H
+#endif //PRIVATE_TEAMS_THREAD_TEAMS_H

@@ -6,7 +6,7 @@
 */
 
 #include <stdlib.h>
-#include "thread.h"
+#include "thread_teams.h"
 #include "my.h"
 
 thread_t *create_thread(char const *title, char const *message,

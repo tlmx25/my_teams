@@ -6,7 +6,7 @@
 */
 
 #include <stdio.h>
-#include "thread.h"
+#include "thread_teams.h"
 
 static thread_t *load_thread(thread_save_t save)
 {

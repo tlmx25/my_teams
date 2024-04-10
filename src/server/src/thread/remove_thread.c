@@ -6,7 +6,7 @@
 */
 
 #include <stdlib.h>
-#include "thread.h"
+#include "thread_teams.h"
 
 void remove_thread_from_list(thread_list_t *list, thread_t *thread)
 {
