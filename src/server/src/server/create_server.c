@@ -8,6 +8,16 @@
 #include <stdlib.h>
 #include "server.h"
 
+static server_t *create_server_3(server_t *server)
+{
+    load_channel_list(server->channels);
+    load_client_list(server->clients_loaded);
+    load_messages_to_list(server->messages);
+    load_team_list(server->teams);
+    load_link_list(server->link_team_user);
+    return server;
+}
+
 static server_t *create_server_2(server_t *server)
 {
     server->clients_loaded = create_client_list();
@@ -15,17 +25,14 @@ static server_t *create_server_2(server_t *server)
     server->messages = create_message_list();
     server->teams = create_team_list();
     server->link_team_user = create_link_list();
+    server->channels = create_channel_list();
     if (!server->clients || !server->clients_loaded
-        || !server->link_team_user
+        || !server->link_team_user || !server->channels
         || !server->messages || !server->teams) {
         delete_server(server);
         return NULL;
     }
-    load_client_list(server->clients_loaded);
-    load_messages_to_list(server->messages);
-    load_team_list(server->teams);
-    load_link_list(server->link_team_user);
-    return server;
+    return create_server_3(server);
 }
 
 server_t *create_server(int port)

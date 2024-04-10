@@ -17,6 +17,7 @@
     #include "messages.h"
     #include "team.h"
     #include "link_team_user.h"
+    #include "channel.h"
     #define UNUSED __attribute__((unused))
 
 
@@ -30,6 +31,7 @@ typedef struct server_s {
     message_list_t *messages;
     team_list_t *teams;
     link_team_user_list_t *link_team_user;
+    channel_list_t *channels;
 } server_t;
 
 typedef struct command_s {
