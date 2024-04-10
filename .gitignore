@@ -33,8 +33,11 @@
 *.app
 
 .idea/
+.idea/*
 vgcore*
 myteams_*
 *.log
 /src/server/coding-style-reports.log
 .save/*
+.vscode/*
+.vscode/
