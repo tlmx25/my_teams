@@ -14,6 +14,9 @@ static team_t *load_team(team_save_t team_save)
     team_t *team = create_team(team_save.name, team_save.description,
         team_save.uuid, team_save.owner_uuid);
 
+    if (team == NULL)
+        return NULL;
+    uuid_copy(team->uuid, team_save.uuid);
     return team;
 }
 
