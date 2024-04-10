@@ -51,7 +51,7 @@ typedef struct thread_save_s {
  * @return thread_t* the created thread
  */
 thread_t *create_thread(char const *title, char const *message,
-                        uuid_t creator_uuid, uuid_t channel_uuid);
+    uuid_t creator_uuid, uuid_t channel_uuid);
 
 /**
  * @brief Create a thread list

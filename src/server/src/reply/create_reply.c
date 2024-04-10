@@ -9,7 +9,7 @@
 #include "reply.h"
 #include "my.h"
 
-reply_t *create_reply(char *body,  uuid_t author_uuid, uuid_t thread_uuid)
+reply_t *create_reply(char *body, uuid_t author_uuid, uuid_t thread_uuid)
 {
     reply_t *reply = calloc(sizeof(reply_t), 1);
 

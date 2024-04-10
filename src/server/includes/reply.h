@@ -117,7 +117,7 @@ int create_directory_if_not_exists(char const *dir_path);
 void save_reply_list(reply_list_t *list);
 
 /**
- * @brief add a reply  to file REPLY_FILE Load a reply list from file REPLY_FILE
+ * @brief add a reply  to file REPLY_FILE
  * @param reply the reply to add
  */
 void add_reply_to_save(reply_t *reply);

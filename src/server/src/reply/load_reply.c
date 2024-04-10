@@ -18,13 +18,14 @@ static reply_t *load_reply(reply_save_t save)
 
 void load_reply_list(reply_list_t *list)
 {
-    FILE *file = fopen(REPLY_FILE,  "r");
+    FILE *file = fopen(REPLY_FILE, "r");
     reply_save_t save;
+    reply_t *reply;
 
     if (file == NULL)
         return;
     while (fread(&save, sizeof(reply_save_t), 1, file) == 1) {
-        reply_t *reply = load_reply(save);
+        reply = load_reply(save);
         if (reply)
             add_reply_to_list(list, reply);
     }
