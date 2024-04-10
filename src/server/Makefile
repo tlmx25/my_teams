@@ -19,6 +19,7 @@ VPATH += src/team/
 VPATH += src/team/link_team_user
 VPATH += src/channel/
 VPATH += src/thread/
+VPATH += src/reply/
 
 SRC := $(shell find ../common/ -name '*.c' -exec basename {} \;)
 SRC += main.c
@@ -73,6 +74,13 @@ SRC += remove_thread.c
 SRC += get_thread.c
 SRC += save_thread.c
 SRC += load_thread.c
+SRC += create_reply.c
+SRC += delete_reply.c
+SRC += add_reply.c
+SRC += remove_reply.c
+SRC += get_reply.c
+SRC += save_reply.c
+SRC += load_reply.c
 
 CFLAGS := -Wall -Wextra -iquote ../../includes/ -iquote ../../libs/myteams
 CFLAGS += -iquote includes/

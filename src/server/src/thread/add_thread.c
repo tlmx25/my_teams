@@ -6,7 +6,7 @@
 */
 
 #include <stdlib.h>
-#include "thread.h"
+#include "thread_teams.h"
 
 void add_thread_to_list(thread_list_t *list, thread_t *thread)
 {
