@@ -16,6 +16,7 @@ static server_t *create_server_3(server_t *server)
     load_team_list(server->teams);
     load_link_list(server->link_team_user);
     load_thread_list(server->threads);
+    load_reply_list(server->replies);
     return server;
 }
 
@@ -28,9 +29,11 @@ static server_t *create_server_2(server_t *server)
     server->link_team_user = create_link_list();
     server->channels = create_channel_list();
     server->threads = create_thread_list();
+    server->replies = create_reply_list();
     if (!server->clients || !server->clients_loaded
         || !server->link_team_user || !server->channels
-        || !server->messages || !server->teams) {
+        || !server->messages || !server->teams ||
+        !server->threads || !server->replies) {
         delete_server(server);
         return NULL;
     }

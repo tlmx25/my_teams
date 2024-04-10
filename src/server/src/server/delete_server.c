@@ -20,6 +20,7 @@ void delete_server(server_t *server)
     delete_link_list(server->link_team_user);
     delete_channel_list(server->channels);
     delete_thread_list(server->threads);
+    delete_reply_list(server->replies);
     free(server->select_config);
     free(server);
 }

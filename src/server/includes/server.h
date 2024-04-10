@@ -19,6 +19,7 @@
     #include "link_team_user.h"
     #include "channel.h"
     #include "thread_teams.h"
+    #include "reply.h"
     #define UNUSED __attribute__((unused))
 
 
@@ -34,6 +35,7 @@ typedef struct server_s {
     link_team_user_list_t *link_team_user;
     channel_list_t *channels;
     thread_list_t *threads;
+    reply_list_t *replies;
 } server_t;
 
 typedef struct command_s {
