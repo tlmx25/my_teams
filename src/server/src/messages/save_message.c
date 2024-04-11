@@ -42,7 +42,7 @@ void append_message_to_save(message_t *message)
 
     if (create_directory_if_not_exists(SAVE_DIR) == -1)
         return;
-    file = fopen("messages.txt", "a+");
+    file = fopen(MESSAGE_FILE, "a+");
     if (file == NULL)
         return;
     save_message(message, file);
