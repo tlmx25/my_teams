@@ -56,6 +56,8 @@ void command_manager(server_t *server, client_t *client, char **command)
             return;
         if (!check_is_connected(client, i))
             return;
-        COMMANDS[i].func(server, client, command);
+        return COMMANDS[i].func(server, client, command);
     }
+    create_add_request_to_list(client->requests_sent, PRINT_ERROR,
+    400, "Unknown command");
 }
