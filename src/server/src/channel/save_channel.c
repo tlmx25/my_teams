@@ -12,7 +12,7 @@
 
 static void save_channel(channel_t *channel, FILE *file)
 {
-    channel_save_t save;
+    channel_save_t save = {0};
 
     if (channel == NULL || file == NULL)
         return;

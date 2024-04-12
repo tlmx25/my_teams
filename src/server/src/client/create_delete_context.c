@@ -8,23 +8,23 @@
 #include <stdlib.h>
 #include "client.h"
 
-context_t *create_context(char const *thread, char const *team,
-    char const *channel)
+context_t *create_context(char const *team, char const *channel,
+    char const *thread)
 {
     context_t *context = malloc(sizeof(context_t));
 
     if (context == NULL)
         return NULL;
-    if (thread) {
-        uuid_parse(thread, context->uuid_thread);
-        context->nb_uuid = 1;
-    }
     if (team) {
         uuid_parse(team, context->uuid_team);
-        context->nb_uuid = 2;
+        context->nb_uuid = 1;
     }
     if (channel) {
         uuid_parse(channel, context->uuid_channel);
+        context->nb_uuid = 2;
+    }
+    if (thread) {
+        uuid_parse(thread, context->uuid_thread);
         context->nb_uuid = 3;
     }
     return context;
