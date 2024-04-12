@@ -15,6 +15,7 @@ void logout_command(UNUSED server_t *server, client_t *client,
 {
     request_t *request;
     char uuid_str[37] = {0};
+    char *body;
 
     if (client->is_connected == false) {
         request = create_request(PRINT_ERROR, 200, "You are not logged in");
@@ -24,11 +25,13 @@ void logout_command(UNUSED server_t *server, client_t *client,
         return;
     }
     client->is_connected = false;
-    request = create_request(LOGGED_OUT, 200, NULL);
+    uuid_unparse(client->uuid, uuid_str);
+    body = my_strcat(uuid_str, "\r");
+    body = my_strcat_free(body, client->username, 1, 0);
+    request = create_request(LOGGED_OUT, 200, body);
+    // add_request_to_list(client->requests_sent, request);
     if (request == NULL)
         return;
-    send_notification_all(server->clients, request);
     free(request);
-    uuid_unparse(client->uuid, uuid_str);
     server_event_user_logged_out(uuid_str);
 }
