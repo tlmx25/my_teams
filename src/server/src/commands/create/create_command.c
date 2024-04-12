@@ -14,5 +14,4 @@ void create_command(server_t *server, client_t *client, char **command)
         return create_team_command(server, client, command);
     if (client->context != NULL && client->context->nb_uuid == 1)
         return create_channel_command(server, client, command);
-
 }

@@ -10,7 +10,8 @@
 #include "my.h"
 #include "logging_server.h"
 
-static void notif_channel_created(server_t *server, client_t *client, channel_t *channel)
+static void notif_channel_created(server_t *server, client_t *client,
+    channel_t *channel)
 {
     request_t *request;
     char *body;
@@ -27,7 +28,8 @@ static void notif_channel_created(server_t *server, client_t *client, channel_t 
     request->action = CHANNEL_CREATED;
     add_request_to_list(client->requests_sent, request);
     uuid_unparse(channel->team_uuid, uuid_team_str);
-    server_event_channel_created(uuid_team_str, uuid_channel_str, channel->name);
+    server_event_channel_created(uuid_team_str, uuid_channel_str,
+    channel->name);
     free(body);
     add_channel_to_save(channel);
 }

@@ -8,8 +8,8 @@
 #include "server.h"
 #include "my.h"
 
-static int set_context_use(client_t *client, char *team_uuid, char *channel_uuid,
-    char *thread_uuid)
+static int set_context_use(client_t *client, char *team_uuid,
+    char *channel_uuid, char *thread_uuid)
 {
     client->context = create_context(team_uuid, channel_uuid, thread_uuid);
     if (client->context == NULL) {

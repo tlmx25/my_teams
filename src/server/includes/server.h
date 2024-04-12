@@ -134,7 +134,8 @@ void create_team_command(server_t *server, client_t *client, char **command);
  * @param client
  * @param command
  */
-void create_channel_command(server_t *server, client_t *client, char **command);
+void create_channel_command(server_t *server, client_t *client,
+    char **command);
 
 /**
  * @brief Must be called for create team, channel, thread, reply

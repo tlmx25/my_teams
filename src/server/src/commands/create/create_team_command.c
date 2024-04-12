@@ -10,7 +10,8 @@
 #include "logging_server.h"
 #include "my.h"
 
-static void notif_team_created(server_t *server, client_t *client, team_t *team)
+static void notif_team_created(server_t *server, client_t *client,
+    team_t *team)
 {
     char team_uuid[37] = {0};
     char user_uuid[37] = {0};
@@ -38,12 +39,12 @@ void create_team_command(server_t *server, client_t *client, char **command)
 
     if (my_arrsize((char const **)command) != 3)
         return create_add_request_to_list(client->requests_sent, PRINT_ERROR,
-                                          400, "Invalid number of  arguments (2 required)");
+        400, "Invalid number of  arguments (2 required)");
     uuid_generate(uuid);
     team = create_team(command[1], command[2], uuid, client->uuid);
     if (team == NULL)
         return create_add_request_to_list(client->requests_sent, PRINT_ERROR,
-                                          400, "Failed to create team");
+        400, "Failed to create team");
     add_team_to_list(server->teams, team);
     notif_team_created(server, client, team);
 }
