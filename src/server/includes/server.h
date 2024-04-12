@@ -102,4 +102,12 @@ void send_error_response(client_t *client, char *message);
  * @param request template of request to send
  */
 void send_notification_all(client_list_t *list, request_t *request);
+
+/**
+ * @brief
+ * @param server
+ * @param client
+ * @param command
+ */
+void use_command(server_t *server, client_t *client, char **command);
 #endif //PRIVATE_TEAMS_SERVER_H
