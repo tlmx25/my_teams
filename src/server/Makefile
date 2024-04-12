@@ -85,6 +85,7 @@ SRC += add_reply.c
 SRC += remove_reply.c
 SRC += get_reply.c
 SRC += save_reply.c
+SRC += info_command.c
 SRC += load_reply.c
 SRC += use_command.c
 SRC += create_command.c
