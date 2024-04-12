@@ -17,6 +17,7 @@ channel_t *create_channel(char const *name, char const *description,
     if (!new_channel)
         return NULL;
     new_channel->name = my_strdup(name);
+    uuid_generate(new_channel->uuid);
     new_channel->description = my_strdup(description);
     uuid_copy(new_channel->team_uuid, team_uuid);
     uuid_copy(new_channel->creator_uuid, creator_uuid);

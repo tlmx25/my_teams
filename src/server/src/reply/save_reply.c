@@ -18,7 +18,7 @@ static void save_reply(reply_t *reply, FILE *file)
     uuid_copy(save.owner_uuid, reply->owner_uuid);
     uuid_copy(save.thread_uuid, reply->thread_uuid);
     save.timestamp = reply->timestamp;
-    my_strncpy(save.body, reply->body, MAX_BODY_LENGTH);
+    my_strncpy(save.body, reply->body, MAX_BODY_LENGTH_REPLY);
     fwrite(&save, sizeof(reply_save_t), 1, file);
 }
 
