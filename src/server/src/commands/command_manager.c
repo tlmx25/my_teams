@@ -5,8 +5,6 @@
 ** command_manager
 */
 
-#include "stdlib.h"
-#include <stdio.h>
 #include "my.h"
 #include "command_server.h"
 
@@ -17,6 +15,7 @@ static const command_t COMMANDS[] = {
     {"/users", users_command, true, 0},
     {"/user", user_command, true, 1},
     {"/send", send_command, true, 2},
+	{"/info", info_command, true, 0},
     {NULL, NULL, false, 0}
 };
 
