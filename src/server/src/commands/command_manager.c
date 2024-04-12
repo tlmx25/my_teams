@@ -12,7 +12,11 @@
 
 static const command_t COMMANDS[] = {
     {"/login", login_command, false, 1},
+    {"/logout", logout_command, true, 0},
     {"/help", help_command, false, 0},
+    {"/users", users_command, true, 0},
+    {"/user", user_command, true, 1},
+    {"/send", send_command, true, 2},
     {NULL, NULL, false, 0}
 };
 
@@ -53,6 +57,8 @@ void command_manager(server_t *server, client_t *client, char **command)
             return;
         if (!check_is_connected(client, i))
             return;
-        COMMANDS[i].func(server, client, command);
+        return COMMANDS[i].func(server, client, command);
     }
+    create_add_request_to_list(client->requests_sent, PRINT_ERROR,
+    400, "Unknown command");
 }
