@@ -13,6 +13,7 @@ VPATH += src/
 VPATH += src/client/
 VPATH += src/server/
 VPATH += src/commands/
+VPATH += src/commands/create
 VPATH += src/messages/
 VPATH += src/request/
 VPATH += src/team/
@@ -85,6 +86,8 @@ SRC += get_reply.c
 SRC += save_reply.c
 SRC += load_reply.c
 SRC += use_command.c
+SRC += create_command.c
+SRC += create_team_command.c
 
 CFLAGS := -Wall -Wextra -iquote ../../includes/ -iquote ../../libs/myteams
 CFLAGS += -iquote includes/

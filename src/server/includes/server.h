@@ -104,10 +104,27 @@ void send_error_response(client_t *client, char *message);
 void send_notification_all(client_list_t *list, request_t *request);
 
 /**
+ * @brief Send a request to all clients except one
+ * @param list list of clients
+ * @param request template of request to send
+ * @param client client to not send
+ */
+void send_notification_other(client_list_t *list, request_t *request,
+    client_t *client);
+
+/**
  * @brief
  * @param server
  * @param client
  * @param command
  */
 void use_command(server_t *server, client_t *client, char **command);
+
+/**
+ * @brief Must be called when a new team is created
+ * @param server
+ * @param client
+ * @param command
+ */
+void create_team_command(server_t *server, client_t *client, char **command);
 #endif //PRIVATE_TEAMS_SERVER_H
