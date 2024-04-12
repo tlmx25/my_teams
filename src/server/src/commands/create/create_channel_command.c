@@ -26,7 +26,6 @@ static void notif_channel_created(server_t *server, client_t *client, channel_t 
     send_notification_other(server->clients, request, client);
     request->action = CHANNEL_CREATED;
     add_request_to_list(client->requests_sent, request);
-    printf("channel->team_uuid: %s\n", channel->team_uuid);
     uuid_unparse(channel->team_uuid, uuid_team_str);
     server_event_channel_created(uuid_team_str, uuid_channel_str, channel->name);
     free(body);
