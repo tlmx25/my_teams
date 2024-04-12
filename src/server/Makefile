@@ -88,6 +88,7 @@ SRC += load_reply.c
 SRC += use_command.c
 SRC += create_command.c
 SRC += create_team_command.c
+SRC += create_channel_command.c
 
 CFLAGS := -Wall -Wextra -iquote ../../includes/ -iquote ../../libs/myteams
 CFLAGS += -iquote includes/

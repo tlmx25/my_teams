@@ -64,7 +64,7 @@ static int check_team_exist(server_t *server, char *team_uuid,
 
 void use_command(server_t *server, client_t *client, char **command)
 {
-    int nb_args = my_arrsize((char const **)command);
+    int nb_args = my_arrsize((char const **)command) - 1;
 
     if (nb_args < 1 || nb_args > 3) {
         create_add_request_to_list(client->requests_sent, PRINT_ERROR,

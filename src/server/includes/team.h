@@ -124,4 +124,10 @@ void save_teams_list(team_list_t *list);
  */
 void load_team_list(team_list_t *list);
 
+/**
+ * @brief add a team to a file(TEAM_SAVE_FILE)
+ * @param team to save
+ */
+void add_team_to_save(team_t *team);
+
 #endif //PRIVATE_TEAMS_THREAD_H

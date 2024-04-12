@@ -127,4 +127,20 @@ void use_command(server_t *server, client_t *client, char **command);
  * @param command
  */
 void create_team_command(server_t *server, client_t *client, char **command);
+
+/**
+ * @brief Must be called when a new channel is created
+ * @param server
+ * @param client
+ * @param command
+ */
+void create_channel_command(server_t *server, client_t *client, char **command);
+
+/**
+ * @brief Must be called for create team, channel, thread, reply
+ * @param server
+ * @param client
+ * @param command
+ */
+void create_command(server_t *server, client_t *client, char **command);
 #endif //PRIVATE_TEAMS_SERVER_H

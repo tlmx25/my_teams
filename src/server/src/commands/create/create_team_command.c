@@ -27,6 +27,7 @@ static void notif_team_created(server_t *server, client_t *client, team_t *team)
     create_add_request_to_list(client->requests_sent, TEAM_CREATED,
     200, body);
     server_event_team_created(team_uuid, team->name, team->description);
+    add_team_to_save(team);
     free(body);
 }
 
@@ -34,9 +35,8 @@ void create_team_command(server_t *server, client_t *client, char **command)
 {
     uuid_t uuid;
     team_t *team = NULL;
-    int nb_args;
 
-    if (my_arrsize((char const **)command) != 2)
+    if (my_arrsize((char const **)command) != 3)
         return create_add_request_to_list(client->requests_sent, PRINT_ERROR,
                                           400, "Invalid number of  arguments (2 required)");
     uuid_generate(uuid);
