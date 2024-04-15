@@ -13,7 +13,6 @@
 static void send_request_subscribe(client_t *client, char *team_uuid)
 {
     char usr_uuid[37];
-    request_t *request;
     char *body;
 
     uuid_unparse(client->uuid, usr_uuid);

@@ -214,4 +214,12 @@ void subscribed_command(server_t *server, client_t *client, char **command);
  * @param command
  */
 void subscribe_command(server_t *server, client_t *client, char **command);
+
+/**
+ * @brief unsubscribe command
+ * @param server
+ * @param client
+ * @param command
+ */
+void unsubscribe_command(server_t *server, client_t *client, char **command);
 #endif //PRIVATE_TEAMS_SERVER_H
