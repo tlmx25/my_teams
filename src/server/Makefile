@@ -91,6 +91,8 @@ SRC += create_command.c
 SRC += create_team_command.c
 SRC += create_channel_command.c
 SRC += create_thread_command.c
+SRC += subscribe_command.c
+SRC += subscribed_command.c
 
 CFLAGS := -Wall -Wextra -iquote ../../includes/ -iquote ../../libs/myteams
 CFLAGS += -iquote includes/
