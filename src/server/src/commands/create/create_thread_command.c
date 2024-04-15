@@ -25,6 +25,7 @@ static char *create_body(char *uuid_thread_str, char *uuid_user_str,
     body = my_strcat_free(body, thread->title, 1, 0);
     body = my_strcat_free(body, "\r", 1, 0);
     body = my_strcat_free(body, thread->message, 1, 0);
+    free(time_str);
     return body;
 }
 
@@ -60,6 +61,15 @@ static void notif_thread_created(server_t *server, client_t *client,
     free(body);
 }
 
+static int check_error(server_t *server, client_t *client)
+{
+    if (!check_team_exist(server, client->context->uuid_team, client))
+        return 0;
+    if (!check_channel_exist(server, client->context->uuid_channel, client))
+        return 0;
+    return 1;
+}
+
 void create_thread_command(server_t *server, client_t *client, char **command)
 {
     thread_t *thread;
@@ -67,6 +77,8 @@ void create_thread_command(server_t *server, client_t *client, char **command)
     if (my_arrsize((char const **)command) != 3)
         return create_add_request_to_list(client->requests_sent, PRINT_ERROR,
         400, "Invalid number of  arguments (2 required)");
+    if (!check_error(server, client))
+        return;
     thread = create_thread(command[1], command[2],
     client->uuid, client->context->uuid_channel);
     if (thread == NULL)
@@ -74,4 +86,6 @@ void create_thread_command(server_t *server, client_t *client, char **command)
         500, "Failed to create thread");
     add_thread_to_list(server->threads, thread);
     notif_thread_created(server, client, thread);
+    delete_context(client->context);
+    client->context = NULL;
 }

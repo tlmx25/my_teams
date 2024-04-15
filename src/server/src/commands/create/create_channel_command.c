@@ -41,6 +41,8 @@ void create_channel_command(server_t *server, client_t *client, char **command)
     if (my_arrsize((char const **) command) != 3)
         return create_add_request_to_list(client->requests_sent, PRINT_ERROR,
         400, "Invalid number of  arguments (2 required)");
+    if (!check_team_exist(server, client->context->uuid_team, client))
+        return;
     channel = create_channel(command[1], command[2],
     client->context->uuid_team, client->uuid);
     if (channel == NULL)
