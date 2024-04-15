@@ -24,7 +24,7 @@ static char *create_body(char *uuid_thread_str, char *uuid_user_str,
     body = my_strcat_free(body, "\r", 1, 0);
     body = my_strcat_free(body, thread->title, 1, 0);
     body = my_strcat_free(body, "\r", 1, 0);
-    body = my_strcat_free(body, thread->message, 1, 0);*
+    body = my_strcat_free(body, thread->message, 1, 0);
     free(time_str);
     return body;
 }
