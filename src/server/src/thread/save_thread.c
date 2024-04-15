@@ -12,7 +12,7 @@
 
 static void save_thread(thread_t *thread, FILE *file)
 {
-    thread_save_t save;
+    thread_save_t save = {0};
 
     if (thread == NULL || file == NULL)
         return;

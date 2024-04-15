@@ -16,4 +16,6 @@ void create_command(server_t *server, client_t *client, char **command)
         return create_channel_command(server, client, command);
     if (client->context != NULL && client->context->nb_uuid == 2)
         return create_thread_command(server, client, command);
+    if (client->context != NULL && client->context->nb_uuid == 3)
+        return create_reply_command(server, client, command);
 }

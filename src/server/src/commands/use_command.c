@@ -59,11 +59,11 @@ int check_team_exist(server_t *server, uuid_t team_uuid, client_t *client)
     return 0;
 }
 
-void use_command(server_t *server, client_t *client, char **command)
+void use_command(UNUSED server_t *server, client_t *client, char **command)
 {
     int nb_args = my_arrsize((char const **)command) - 1;
 
-    if (nb_args < 1 || nb_args > 3) {
+    if (nb_args < 1 || nb_args > 4) {
         create_add_request_to_list(client->requests_sent, PRINT_ERROR,
         400, "Invalid number of arguments");
         return;

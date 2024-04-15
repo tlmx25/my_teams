@@ -85,6 +85,7 @@ void create_thread_command(server_t *server, client_t *client, char **command)
         return create_add_request_to_list(client->requests_sent, PRINT_ERROR,
         500, "Failed to create thread");
     add_thread_to_list(server->threads, thread);
+    add_thread_to_save(thread);
     notif_thread_created(server, client, thread);
     delete_context(client->context);
     client->context = NULL;

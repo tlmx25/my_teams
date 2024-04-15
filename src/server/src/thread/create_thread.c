@@ -22,6 +22,7 @@ thread_t *create_thread(char const *title, char const *message,
     uuid_copy(thread->channel_uuid, channel_uuid);
     thread->title = my_strdup(title);
     thread->message = my_strdup(message);
+    thread->created_at = time(NULL);
     return thread;
 }
 
