@@ -198,4 +198,20 @@ team_t *get_team_by_reply(server_t *server, reply_t *reply);
  * @param command
  */
 void create_thread_command(server_t *server, client_t *client, char **command);
+
+/**
+ * @brief subscribed command
+ * @param server
+ * @param client
+ * @param command
+ */
+void subscribed_command(server_t *server, client_t *client, char **command);
+
+/**
+ * @brief subscribe command
+ * @param server
+ * @param client
+ * @param command
+ */
+void subscribe_command(server_t *server, client_t *client, char **command);
 #endif //PRIVATE_TEAMS_SERVER_H
