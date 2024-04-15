@@ -13,6 +13,7 @@ VPATH += src/
 VPATH += src/client/
 VPATH += src/server/
 VPATH += src/commands/
+VPATH += src/commands/create
 VPATH += src/messages/
 VPATH += src/request/
 VPATH += src/team/
@@ -38,6 +39,7 @@ SRC += login_command.c
 SRC += users_command.c
 SRC += user_command.c
 SRC += send_command.c
+SRC += messages_command.c
 SRC += logout_command.c
 SRC += help_command.c
 SRC += save_client.c
@@ -84,12 +86,16 @@ SRC += remove_reply.c
 SRC += get_reply.c
 SRC += save_reply.c
 SRC += load_reply.c
+SRC += use_command.c
+SRC += create_command.c
+SRC += create_team_command.c
+SRC += create_channel_command.c
 
 CFLAGS := -Wall -Wextra -iquote ../../includes/ -iquote ../../libs/myteams
 CFLAGS += -iquote includes/
 
-LDFLAGS := -luuid -L ../../libs/ -lmy -L${CURDIR}/../../libs/myteams
-LDFLAGS += -l:libmyteams.so -Wl,-rpath=${CURDIR}/../../libs/myteams
+LDFLAGS := -luuid -L ../../libs/ -lmy -L${CURDIR}/../../libs/myteams -lmyteams
+LDFLAGS += -Wl,-rpath=${CURDIR}/../../libs/myteams
 
 BUILD_DIR = build/
 

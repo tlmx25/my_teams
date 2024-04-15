@@ -89,7 +89,7 @@ int run_client(client_t *client)
     if (connect_to_server(client) == ERROR)
         return ERROR;
     client->config_select->max_fd = client->fd_server;
-    while (client->is_running) {
+    while (client->is_running == true) {
         set_fd(client);
         if (exec_select(client->config_select) == ERROR)
             return ERROR;

@@ -32,4 +32,5 @@ void logged_out_command(UNUSED client_t *client, request_t *request)
     }
     client_event_logged_out(args[0], args[1]);
     free_tab(args);
+    client->is_running = false;
 }

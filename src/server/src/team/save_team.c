@@ -35,3 +35,16 @@ void save_teams_list(team_list_t *list)
         save_team(tmp, file);
     fclose(file);
 }
+
+void add_team_to_save(team_t *team)
+{
+    FILE *file;
+
+    if (create_directory_if_not_exists(SAVE_DIR) == -1)
+        return;
+    file = fopen(TEAM_SAVE_FILE, "a+");
+    if (file == NULL)
+        return;
+    save_team(team, file);
+    fclose(file);
+}

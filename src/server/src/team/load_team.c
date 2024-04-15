@@ -32,4 +32,5 @@ void load_team_list(team_list_t *list)
         team = load_team(save);
         add_team_to_list(list, team);
     }
+    fclose(file);
 }
