@@ -26,7 +26,8 @@ static const command_t COMMANDS[] = {
     {"/subed", subscribed_command, true, -1},
     {"/sub", subscribe_command, true, 1},
     {"/unsub", unsubscribe_command, true, 1},
-    {NULL, NULL, false, 0}
+    {"/list", list_command,true, -1},
+    {NULL, NULL, false, -1}
 };
 
 static int check_nb_arg(client_t *client, char **command, int i)

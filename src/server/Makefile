@@ -96,6 +96,7 @@ SRC += subscribe_command.c
 SRC += subscribed_command.c
 SRC += unsubscribe_command.c
 SRC += create_reply_command.c
+SRC += list_command.c
 
 CFLAGS := -Wall -Wextra -iquote ../../includes/ -iquote ../../libs/myteams
 CFLAGS += -iquote includes/
