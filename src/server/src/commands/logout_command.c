@@ -29,7 +29,7 @@ void logout_command(UNUSED server_t *server, client_t *client,
     body = my_strcat_free(body, client->username, 1, 0);
     request = create_request(LOGGED_OUT, 200, body);
     free(body);
-     add_request_to_list(client->requests_sent, request);
+    add_request_to_list(client->requests_sent, request);
     if (request == NULL)
         return;
 }
