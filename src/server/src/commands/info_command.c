@@ -12,10 +12,13 @@
 
 void info_command(server_t *server, client_t *client, char **command)
 {
-	if (client->is_connected == false) {
-		add_request_to_list(client->requests_sent,create_request
-		(PRINT_ERROR, 401, "You are not logged in"));
-		return;
-	}
+	client_t *current = server->clients_loaded->head;
 
+	while (current) {
+		uuid_unparse(current->uuid, uuid_str);
+		if (my_strcmp(uuid_str, command[1]) == 0) {
+			return;
+		}
+		current = current->next;
+	}
 }
