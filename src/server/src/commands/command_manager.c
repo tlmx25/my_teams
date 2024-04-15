@@ -12,7 +12,8 @@
 
 static const command_t COMMANDS[] = {
     {"/login", login_command, false, 1},
-    {"/logout", logout_command, true, 0},
+    {"/li", login_command, false, 1},
+    {"/lo", logout_command, true, 0},
     {"/help", help_command, false, 0},
     {"/users", users_command, true, 0},
     {"/user", user_command, true, 1},
@@ -20,6 +21,11 @@ static const command_t COMMANDS[] = {
     {"/messages", messages_command, true, 1},
     {"/use", use_command, true, -1},
     {"/create", create_command, true, -1},
+    {"/cr", create_command, true, -1},
+    {"/subscribed", subscribed_command, true, -1},
+    {"/subed", subscribed_command, true, -1},
+    {"/sub", subscribe_command, true, 1},
+    {"/unsub", unsubscribe_command, true, 1},
     {NULL, NULL, false, 0}
 };
 
