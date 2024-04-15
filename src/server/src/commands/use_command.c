@@ -11,6 +11,8 @@
 static int set_context_use(client_t *client, char *team_uuid,
     char *channel_uuid, char *thread_uuid)
 {
+    if (client->context)
+        delete_context(client->context);
     client->context = create_context(team_uuid, channel_uuid, thread_uuid);
     if (client->context == NULL) {
         create_add_request_to_list(client->requests_sent, PRINT_ERROR,
