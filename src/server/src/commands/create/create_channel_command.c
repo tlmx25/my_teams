@@ -24,7 +24,7 @@ static void notif_channel_created(server_t *server, client_t *client,
     body = my_strcat_free(body, "\r", 1, 0);
     body = my_strcat_free(body, channel->description, 1, 0);
     request = create_request(NT_CHANNEL_CREATED, 201, body);
-    send_notification_other(server->clients, request, client);
+    send_notification_subscribed(server, request, client, channel->team_uuid);
     request->action = CHANNEL_CREATED;
     add_request_to_list(client->requests_sent, request);
     uuid_unparse(channel->team_uuid, uuid_team_str);
