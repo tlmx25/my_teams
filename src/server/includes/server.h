@@ -144,4 +144,57 @@ void create_channel_command(server_t *server, client_t *client,
  * @param command
  */
 void create_command(server_t *server, client_t *client, char **command);
+
+/**
+ * @brief Called for send notification for subscribed user
+ * @param server
+ * @param request
+ * @param client
+ * @param team_uuid
+ */
+void send_notification_subscribed(server_t  *server,
+    request_t *request, client_t *client, uuid_t team_uuid);
+
+/**
+ * @brief Check if a user is subscribed to a team
+ * @param link
+ * @param team_uuid
+ * @param user_uuid
+ * @return int
+ */
+int is_subscribed(link_team_user_list_t *link, uuid_t team_uuid, uuid_t user_uuid);
+
+/**
+ * @brief Get a team by channel
+ * @param list
+ * @param channel
+ * @return team_t*
+ */
+team_t *get_team_by_channel(team_list_t *list, channel_t *channel);
+
+/**
+ * @brief Get a team by thread
+ * @param server
+ * @param list
+ * @param thread
+ * @return team_t*
+ */
+team_t *get_team_by_thread(server_t *server, thread_t *thread);
+
+/**
+ * @brief Get a team by reply
+ * @param server
+ * @param list
+ * @param reply
+ * @return team_t*
+ */
+team_t *get_team_by_reply(server_t *server, reply_t *reply);
+
+/**
+ * @brief create a new thread
+ * @param server
+ * @param client
+ * @param command
+ */
+void create_thread_command(server_t *server, client_t *client, char **command);
 #endif //PRIVATE_TEAMS_SERVER_H
