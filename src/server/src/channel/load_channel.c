@@ -35,4 +35,5 @@ void load_channel_list(channel_list_t *list)
         if (channel)
             add_channel_to_list(list, channel);
     }
+    fclose(file);
 }

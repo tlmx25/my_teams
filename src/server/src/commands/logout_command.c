@@ -24,14 +24,12 @@ void logout_command(UNUSED server_t *server, client_t *client,
         add_request_to_list(client->requests_sent, request);
         return;
     }
-    client->is_connected = false;
     uuid_unparse(client->uuid, uuid_str);
     body = my_strcat(uuid_str, "\r");
     body = my_strcat_free(body, client->username, 1, 0);
     request = create_request(LOGGED_OUT, 200, body);
-    // add_request_to_list(client->requests_sent, request);
+    free(body);
+     add_request_to_list(client->requests_sent, request);
     if (request == NULL)
         return;
-    free(request);
-    server_event_user_logged_out(uuid_str);
 }
