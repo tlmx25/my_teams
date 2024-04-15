@@ -35,8 +35,8 @@ SRC += print_commands.c
 CFLAGS := -Wall -Wextra -I ../../includes/ -I ../../libs/myteams/
 CFLAGS += -iquote includes/
 
-LDFLAGS := -luuid -L ../../libs/ -lmy -L${CURDIR}/../../libs/myteams
-LDFLAGS += -l:libmyteams.so -Wl,-rpath=${CURDIR}/../../libs/myteams
+LDFLAGS := -luuid -L ../../libs/ -lmy -L${CURDIR}/../../libs/myteams -lmyteams
+LDFLAGS += -Wl,-rpath=${CURDIR}/../../libs/myteams
 
 BUILD_DIR = build/
 

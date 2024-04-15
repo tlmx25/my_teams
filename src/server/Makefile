@@ -94,8 +94,8 @@ SRC += create_channel_command.c
 CFLAGS := -Wall -Wextra -iquote ../../includes/ -iquote ../../libs/myteams
 CFLAGS += -iquote includes/
 
-LDFLAGS := -luuid -L ../../libs/ -lmy -L${CURDIR}/../../libs/myteams
-LDFLAGS += -l:libmyteams.so -Wl,-rpath=${CURDIR}/../../libs/myteams
+LDFLAGS := -luuid -L ../../libs/ -lmy -L${CURDIR}/../../libs/myteams -lmyteams
+LDFLAGS += -Wl,-rpath=${CURDIR}/../../libs/myteams
 
 BUILD_DIR = build/
 
