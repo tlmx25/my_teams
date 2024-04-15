@@ -227,4 +227,12 @@ int check_channel_exist(server_t *server, uuid_t channel_uuid,
     client_t *client);
 int check_thread_exist(server_t *server, uuid_t thread_uuid, client_t *client);
 int check_team_exist(server_t *server, uuid_t team_uuid, client_t *client);
+
+/**
+ * @brief create a new reply
+ * @param server
+ * @param client
+ * @param command
+ */
+void create_reply_command(server_t *server, client_t *client, char **command);
 #endif //PRIVATE_TEAMS_SERVER_H

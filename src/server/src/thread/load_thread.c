@@ -25,7 +25,7 @@ void load_thread_list(thread_list_t *list)
 
     if (list == NULL)
         return;
-    file = fopen("save/thread.save", "r");
+    file = fopen(THREAD_SAVE_FILE, "r");
     if (file == NULL)
         return;
     while (fread(&save, sizeof(thread_save_t), 1, file) == 1) {
