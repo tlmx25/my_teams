@@ -11,7 +11,8 @@
 #include "my.h"
 #include "time_utils.h"
 
-static char *create_body(char *uuid_thread_str, char *uuid_user_str, thread_t *thread)
+static char *create_body(char *uuid_thread_str, char *uuid_user_str,
+    thread_t *thread)
 {
     char *body = NULL;
     char *time_str = timestamp_to_str(thread->created_at);
@@ -27,7 +28,7 @@ static char *create_body(char *uuid_thread_str, char *uuid_user_str, thread_t *t
     return body;
 }
 
-static void send_request_thread(server_t *server, client_t *client,\
+static void send_request_thread(server_t *server, client_t *client,
     thread_t *thread, request_t *request)
 {
     team_t *team = get_team_by_thread(server, thread);
@@ -39,7 +40,8 @@ static void send_request_thread(server_t *server, client_t *client,\
     add_request_to_list(client->requests_sent, request);
 }
 
-static void notif_thread_created(server_t *server, client_t *client, thread_t *thread)
+static void notif_thread_created(server_t *server, client_t *client,
+    thread_t *thread)
 {
     request_t *request;
     char *body;

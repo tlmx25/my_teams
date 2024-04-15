@@ -152,7 +152,7 @@ void create_command(server_t *server, client_t *client, char **command);
  * @param client
  * @param team_uuid
  */
-void send_notification_subscribed(server_t  *server,
+void send_notification_subscribed(server_t *server,
     request_t *request, client_t *client, uuid_t team_uuid);
 
 /**
@@ -162,7 +162,8 @@ void send_notification_subscribed(server_t  *server,
  * @param user_uuid
  * @return int
  */
-int is_subscribed(link_team_user_list_t *link, uuid_t team_uuid, uuid_t user_uuid);
+int is_subscribed(link_team_user_list_t *link, uuid_t team_uuid,
+    uuid_t user_uuid);
 
 /**
  * @brief Get a team by channel
