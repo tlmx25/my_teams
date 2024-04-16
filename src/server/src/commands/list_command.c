@@ -67,7 +67,7 @@ static void team_display_list(server_t *server, client_t *client)
     team_t *team;
 
     printf("nbr of team = %d\n", server->teams->size);
-    if (error_non_existing(server->teams->size, NULL, NULL, client) == false)
+    if (error_non_existing(server->teams->size, 0, NULL, client) == false)
         return;
     team = server->teams->head;
     while(team) {
