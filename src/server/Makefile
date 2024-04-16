@@ -100,7 +100,7 @@ CFLAGS := -Wall -Wextra -iquote ../../includes/ -iquote ../../libs/myteams
 CFLAGS += -iquote includes/
 
 LDFLAGS := -luuid -L ../../libs/ -lmy -L${CURDIR}/../../libs/myteams -lmyteams
-LDFLAGS += -Wl,-rpath=${CURDIR}/../../libs/myteams
+#LDFLAGS += -Wl,-rpath=${CURDIR}/../../libs/myteams
 
 BUILD_DIR = build/
 
