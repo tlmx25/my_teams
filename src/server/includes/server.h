@@ -235,4 +235,12 @@ int check_team_exist(server_t *server, uuid_t team_uuid, client_t *client);
  * @param command
  */
 void create_reply_command(server_t *server, client_t *client, char **command);
+
+/**
+ * @brief check if the client is subscribed to a team and set error request
+ * @param server
+ * @param client
+ * @return 1 if is subscribed or 0 if not,
+ */
+int check_subscribed(server_t *server, client_t *client);
 #endif //PRIVATE_TEAMS_SERVER_H

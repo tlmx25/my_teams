@@ -11,6 +11,7 @@
 static const command_t COMMANDS[] = {
     {LOGGED_IN, &logged_in_command},
     {LOGGED_OUT, &logged_out_command},
+    {NT_LOGGED_OUT, &logged_out_command},
     {MSG_PRV_RCVD, &prv_msg_rcvd_command},
     {MSG_THREAD_REPLY, &thread_reply_rcvd_command},
     {TEAM_CREATED, &creation_team_command},

@@ -102,7 +102,8 @@ void create_reply_command(server_t *server, client_t *client, char **command)
     if (my_arrsize((char const **)command) != 2)
         return create_add_request_to_list(client->requests_sent, PRINT_ERROR,
         400, "Invalid number of arguments (1 required)");
-    if (!check_error_reply(server, client))
+    if (!check_error_reply(server, client) ||
+    !check_subscribed(server, client))
         return;
     reply = create_reply(command[1], client->uuid,
     client->context->uuid_thread);
