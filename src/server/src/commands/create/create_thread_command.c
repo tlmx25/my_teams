@@ -61,11 +61,18 @@ static void notif_thread_created(server_t *server, client_t *client,
     free(body);
 }
 
-static int check_error(server_t *server, client_t *client)
+static int check_error(server_t *server, client_t *client, char const *title)
 {
     if (!check_team_exist(server, client->context->uuid_team, client))
         return 0;
     if (!check_channel_exist(server, client->context->uuid_channel, client))
+        return 0;
+    if (get_thread_by_title(server->threads, title)) {
+        create_add_request_to_list(client->requests_sent,
+        ERROR_ALREADY_EXISTS, 400, "");
+        return 0;
+    }
+    if (!check_subscribed(server, client))
         return 0;
     return 1;
 }
@@ -77,7 +84,7 @@ void create_thread_command(server_t *server, client_t *client, char **command)
     if (my_arrsize((char const **)command) != 3)
         return create_add_request_to_list(client->requests_sent, PRINT_ERROR,
         400, "Invalid number of  arguments (2 required)");
-    if (!check_error(server, client))
+    if (!check_error(server, client, command[1]))
         return;
     thread = create_thread(command[1], command[2],
     client->uuid, client->context->uuid_channel);

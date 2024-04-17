@@ -47,8 +47,8 @@ static int check_is_connected(client_t *client, int i)
     if (COMMANDS[i].need_logged == false)
         return 1;
     if (client->username == NULL) {
-        create_add_request_to_list(client->requests_sent, PRINT_ERROR,
-        400, "You need to be logged in to use this command");
+        create_add_request_to_list(client->requests_sent, UNAUTHORIZED,
+        400, "");
         return 0;
     }
     return 1;
@@ -63,9 +63,9 @@ void command_manager(server_t *server, client_t *client, char **command)
     for (; COMMANDS[i].command; i++) {
         if (my_strcmp(command[0], COMMANDS[i].command) != 0)
             continue;
-        if (!check_nb_arg(client, command, i))
-            return;
         if (!check_is_connected(client, i))
+            return;
+        if (!check_nb_arg(client, command, i))
             return;
         return COMMANDS[i].func(server, client, command);
     }
