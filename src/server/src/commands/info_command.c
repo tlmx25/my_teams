@@ -103,8 +103,8 @@ static void thread_display_info(server_t *server, client_t *client)
         client->context->uuid_thread);
         if (thread == NULL)
             return;
-        uuid_unparse(thread->creator_uuid, uuid_str_thread);
         uuid_unparse(thread->uuid, uuid_str_thread);
+        uuid_unparse(thread->creator_uuid, uuid_str_client);
         body = my_strcat(uuid_str_thread, "\r");
         body = my_strcat_free(body, uuid_str_client, 1, 0);
         send_thread_display_info(body, client, thread);
