@@ -75,7 +75,8 @@ static void channel_display_info(server_t *server, client_t *client)
     if (!check_channel_exist(server, client->context->uuid_channel, client) ||
     !check_subscribed(server, client))
         return;
-    channel = get_channel_by_uuid(server->channels, client->context->uuid_channel);
+    channel = get_channel_by_uuid(server->channels,
+    client->context->uuid_channel);
     if (!channel)
         return;
     uuid_unparse(channel->uuid, uuid_str);
