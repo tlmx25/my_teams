@@ -37,8 +37,7 @@ static void notif_channel_created(server_t *server, client_t *client,
 int check_subscribed(server_t *server, client_t *client)
 {
     if (!is_subscribed(server->link_team_user, client->context->uuid_team,
-    client->uuid))
-    {
+    client->uuid)) {
         create_add_request_to_list(client->requests_sent, UNAUTHORIZED,
         400, "");
         return 0;
