@@ -15,7 +15,7 @@ static void send_request(client_t *client, message_t *msg, char *uuid_str)
 {
     char *body = my_strcat(uuid_str, "\r");
 
-    body = my_strcat_free(body, timestamp_to_str(msg->timestamp), 1, 0);
+    body = my_strcat_free(body, timestamp_to_str(msg->timestamp), 1, 1);
     body = my_strcat_free(body, "\r", 1, 0);
     body = my_strcat_free(body, msg->message, 1, 0);
     add_request_to_list(client->requests_sent,
