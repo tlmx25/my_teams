@@ -41,6 +41,7 @@ typedef enum action_e {
     NT_PRINT_SUB, //client_print_subscribed
     NT_PRINT_UNSUB, //client_print_unsubscribed
     PRINT_ERROR,
+    NT_LOGGED_OUT,
     NONE,
 } action_t;
 

@@ -40,6 +40,9 @@ void create_team_command(server_t *server, client_t *client, char **command)
     if (my_arrsize((char const **)command) != 3)
         return create_add_request_to_list(client->requests_sent, PRINT_ERROR,
         400, "Invalid number of  arguments (2 required)");
+    if (get_team_by_name(server->teams, command[1]))
+        return create_add_request_to_list(client->requests_sent,
+        ERROR_ALREADY_EXISTS, 400, "");
     uuid_generate(uuid);
     team = create_team(command[1], command[2], uuid, client->uuid);
     if (team == NULL)

@@ -11,7 +11,8 @@
 #include "my.h"
 #include "time_utils.h"
 
-static char *create_body(char *uuid_thread_str, char *uuid_user_str, thread_t *thread)
+static char *create_body(char *uuid_thread_str, char *uuid_user_str,
+    thread_t *thread)
 {
     char *body = NULL;
     char *time_str = timestamp_to_str(thread->created_at);
@@ -24,10 +25,11 @@ static char *create_body(char *uuid_thread_str, char *uuid_user_str, thread_t *t
     body = my_strcat_free(body, thread->title, 1, 0);
     body = my_strcat_free(body, "\r", 1, 0);
     body = my_strcat_free(body, thread->message, 1, 0);
+    free(time_str);
     return body;
 }
 
-static void send_request_thread(server_t *server, client_t *client,\
+static void send_request_thread(server_t *server, client_t *client,
     thread_t *thread, request_t *request)
 {
     team_t *team = get_team_by_thread(server, thread);
@@ -39,7 +41,8 @@ static void send_request_thread(server_t *server, client_t *client,\
     add_request_to_list(client->requests_sent, request);
 }
 
-static void notif_thread_created(server_t *server, client_t *client, thread_t *thread)
+static void notif_thread_created(server_t *server, client_t *client,
+    thread_t *thread)
 {
     request_t *request;
     char *body;
@@ -58,6 +61,22 @@ static void notif_thread_created(server_t *server, client_t *client, thread_t *t
     free(body);
 }
 
+static int check_error(server_t *server, client_t *client, char const *title)
+{
+    if (!check_team_exist(server, client->context->uuid_team, client))
+        return 0;
+    if (!check_channel_exist(server, client->context->uuid_channel, client))
+        return 0;
+    if (get_thread_by_title(server->threads, title)) {
+        create_add_request_to_list(client->requests_sent,
+        ERROR_ALREADY_EXISTS, 400, "");
+        return 0;
+    }
+    if (!check_subscribed(server, client))
+        return 0;
+    return 1;
+}
+
 void create_thread_command(server_t *server, client_t *client, char **command)
 {
     thread_t *thread;
@@ -65,11 +84,16 @@ void create_thread_command(server_t *server, client_t *client, char **command)
     if (my_arrsize((char const **)command) != 3)
         return create_add_request_to_list(client->requests_sent, PRINT_ERROR,
         400, "Invalid number of  arguments (2 required)");
+    if (!check_error(server, client, command[1]))
+        return;
     thread = create_thread(command[1], command[2],
     client->uuid, client->context->uuid_channel);
     if (thread == NULL)
         return create_add_request_to_list(client->requests_sent, PRINT_ERROR,
         500, "Failed to create thread");
     add_thread_to_list(server->threads, thread);
+    add_thread_to_save(thread);
     notif_thread_created(server, client, thread);
+    delete_context(client->context);
+    client->context = NULL;
 }

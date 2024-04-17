@@ -6,6 +6,7 @@
 */
 
 #include <stdlib.h>
+#include <stdio.h>
 #include "thread_teams.h"
 #include "my.h"
 
@@ -19,10 +20,9 @@ thread_t *create_thread(char const *title, char const *message,
     uuid_generate(thread->uuid);
     uuid_copy(thread->creator_uuid, creator_uuid);
     uuid_copy(thread->channel_uuid, channel_uuid);
-    if (title != NULL)
-        my_strncpy(thread->title, title, 255);
-    if (message != NULL)
-        my_strncpy(thread->message, message, 4095);
+    thread->title = my_strdup(title);
+    thread->message = my_strdup(message);
+    thread->created_at = time(NULL);
     return thread;
 }
 

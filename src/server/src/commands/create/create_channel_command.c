@@ -34,6 +34,26 @@ static void notif_channel_created(server_t *server, client_t *client,
     add_channel_to_save(channel);
 }
 
+int check_subscribed(server_t *server, client_t *client)
+{
+    if (!is_subscribed(server->link_team_user, client->context->uuid_team,
+    client->uuid))
+    {
+        create_add_request_to_list(client->requests_sent, UNAUTHORIZED,
+        400, "");
+        return 0;
+    }
+    return 1;
+}
+
+static void middleware(server_t *server, client_t *client, channel_t *channel)
+{
+    add_channel_to_list(server->channels, channel);
+    notif_channel_created(server, client, channel);
+    delete_context(client->context);
+    client->context = NULL;
+}
+
 void create_channel_command(server_t *server, client_t *client, char **command)
 {
     channel_t *channel;
@@ -41,13 +61,17 @@ void create_channel_command(server_t *server, client_t *client, char **command)
     if (my_arrsize((char const **) command) != 3)
         return create_add_request_to_list(client->requests_sent, PRINT_ERROR,
         400, "Invalid number of  arguments (2 required)");
+    if (!check_team_exist(server, client->context->uuid_team, client))
+        return;
+    if (!check_subscribed(server, client))
+        return;
+    if (get_channel_by_name(server->channels, command[1]))
+        return create_add_request_to_list(client->requests_sent,
+        ERROR_ALREADY_EXISTS, 400, "");
     channel = create_channel(command[1], command[2],
     client->context->uuid_team, client->uuid);
     if (channel == NULL)
         return create_add_request_to_list(client->requests_sent, PRINT_ERROR,
         400, "Failed to create channel");
-    add_channel_to_list(server->channels, channel);
-    notif_channel_created(server, client, channel);
-    delete_context(client->context);
-    client->context = NULL;
+    middleware(server, client, channel);
 }

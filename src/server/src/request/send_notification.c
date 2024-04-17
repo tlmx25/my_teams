@@ -35,7 +35,8 @@ void send_notification_other(client_list_t *list, request_t *request,
     }
 }
 
-int is_subscribed(link_team_user_list_t *link, uuid_t team_uuid, uuid_t user_uuid)
+int is_subscribed(link_team_user_list_t *link, uuid_t team_uuid,
+    uuid_t user_uuid)
 {
     link_team_user_t *tmp = link->head;
 
@@ -47,7 +48,7 @@ int is_subscribed(link_team_user_list_t *link, uuid_t team_uuid, uuid_t user_uui
     return 0;
 }
 
-void send_notification_subscribed(server_t  *server,
+void send_notification_subscribed(server_t *server,
     request_t *request, client_t *client, uuid_t team_uuid)
 {
     request_t *dreq;
@@ -61,5 +62,4 @@ void send_notification_subscribed(server_t  *server,
         dreq = create_request(request->action, request->code, request->body);
         add_request_to_list(tmp->requests_sent, dreq);
     }
-
 }

@@ -152,7 +152,7 @@ void create_command(server_t *server, client_t *client, char **command);
  * @param client
  * @param team_uuid
  */
-void send_notification_subscribed(server_t  *server,
+void send_notification_subscribed(server_t *server,
     request_t *request, client_t *client, uuid_t team_uuid);
 
 /**
@@ -162,7 +162,8 @@ void send_notification_subscribed(server_t  *server,
  * @param user_uuid
  * @return int
  */
-int is_subscribed(link_team_user_list_t *link, uuid_t team_uuid, uuid_t user_uuid);
+int is_subscribed(link_team_user_list_t *link, uuid_t team_uuid,
+    uuid_t user_uuid);
 
 /**
  * @brief Get a team by channel
@@ -197,4 +198,49 @@ team_t *get_team_by_reply(server_t *server, reply_t *reply);
  * @param command
  */
 void create_thread_command(server_t *server, client_t *client, char **command);
+
+/**
+ * @brief subscribed command
+ * @param server
+ * @param client
+ * @param command
+ */
+void subscribed_command(server_t *server, client_t *client, char **command);
+
+/**
+ * @brief subscribe command
+ * @param server
+ * @param client
+ * @param command
+ */
+void subscribe_command(server_t *server, client_t *client, char **command);
+
+/**
+ * @brief unsubscribe command
+ * @param server
+ * @param client
+ * @param command
+ */
+void unsubscribe_command(server_t *server, client_t *client, char **command);
+
+int check_channel_exist(server_t *server, uuid_t channel_uuid,
+    client_t *client);
+int check_thread_exist(server_t *server, uuid_t thread_uuid, client_t *client);
+int check_team_exist(server_t *server, uuid_t team_uuid, client_t *client);
+
+/**
+ * @brief create a new reply
+ * @param server
+ * @param client
+ * @param command
+ */
+void create_reply_command(server_t *server, client_t *client, char **command);
+
+/**
+ * @brief check if the client is subscribed to a team and set error request
+ * @param server
+ * @param client
+ * @return 1 if is subscribed or 0 if not,
+ */
+int check_subscribed(server_t *server, client_t *client);
 #endif //PRIVATE_TEAMS_SERVER_H
