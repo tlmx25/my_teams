@@ -51,8 +51,7 @@ static void team_display_info(server_t *server, client_t *client)
     char *body;
     team_t *team;
 
-    if (!check_team_exist(server, client->context->uuid_team, client) ||
-    !check_subscribed(server, client))
+    if (!check_team_exist(server, client->context->uuid_team, client))
         return;
     team = get_team_by_uuid(server->teams, client->context->uuid_team);
     if (team == NULL)
