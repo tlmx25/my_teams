@@ -11,7 +11,7 @@
 #include "my.h"
 
 static void print_user(client_t *client, client_t *to_sent,
-    client_list_t *connected)
+    UNUSED client_list_t *connected)
 {
     char uuid_str[37] = {0};
     char *body;
