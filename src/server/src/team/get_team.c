@@ -42,7 +42,7 @@ team_t *get_team_by_channel(team_list_t *list, channel_t *channel)
     if (list == NULL)
         return NULL;
     for (tmp = list->head; tmp; tmp = tmp->next) {
-        if (channel->team_uuid == tmp->uuid)
+        if (uuid_compare(tmp->uuid, channel->team_uuid) == 0)
             return tmp;
     }
     return NULL;
