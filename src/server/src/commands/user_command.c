@@ -36,7 +36,7 @@ void user_command(UNUSED server_t *server, client_t *client,
     while (current) {
         uuid_unparse(current->uuid, uuid_str);
         if (my_strcmp(uuid_str, command[1]) == 0) {
-            print_user(current, client, server->clients);
+            print_user(current, client);
             return;
         }
         current = current->next;
