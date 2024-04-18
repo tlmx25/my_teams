@@ -20,5 +20,8 @@ void send_command(server_t *server, client_t *client, char **command);
 void info_command(server_t *server, client_t *client, char **command);
 void messages_command(server_t *server, client_t *client, char **command);
 void list_command(server_t *server, client_t *client, char **command);
+void replies_display_list(server_t *server, client_t *client);
+void thread_display_list(server_t *server, client_t *client);
+void channel_display_list(server_t *server, client_t *client);
 
 #endif //PRIVATE_TEAMS_COMMAND_SERVER_H
