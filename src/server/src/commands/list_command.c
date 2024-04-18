@@ -37,9 +37,9 @@ static void team_display_list(server_t *server, client_t *client)
             404, "No team found");
     team = get_team_by_uuid(server->teams, server->teams->head->uuid);
     while (team) {
-        if (send_team_display_list(body, client, team) == NULL)
+        team = send_team_display_list(body, client, team);
+        if (team == NULL)
             break;
-        team = get_team_by_uuid(server->teams, team->next->uuid);
     }
 }
 
@@ -71,9 +71,9 @@ static void channel_display_list(server_t *server, client_t *client)
     channel = get_channel_by_uuid(server->channels,
         server->channels->head->uuid);
     while (channel) {
-        if (send_channel_display_list(body, client, channel) == NULL)
-            break;
-        channel = get_channel_by_uuid(server->channels, channel->next->uuid);
+        channel = send_channel_display_list(body, client, channel);
+        if (channel == NULL)
+            return;
     }
 }
 
@@ -113,9 +113,9 @@ static void thread_display_list(server_t *server, client_t *client)
             404, "No thread found");
     thread = get_thread_by_uuid(server->threads, server->channels->head->uuid);
     while (thread) {
-        if (send_thread_display_list(body, client, thread) == NULL)
+        thread = send_thread_display_list(body, client, thread);
+        if (thread == NULL)
             return;
-        thread = get_thread_by_uuid(server->threads, thread->next->uuid);
     }
 }
 
@@ -123,7 +123,13 @@ reply_t *send_replies_display_list(char *body, client_t *client, reply_t
     *reply)
 {
     char *time_str = timestamp_to_str(reply->timestamp);
+    char uuid_str_thread[37] = {0};
+    char uuid_str_client[37] = {0};
 
+    uuid_unparse(reply->thread_uuid, uuid_str_thread);
+    uuid_unparse(client->uuid, uuid_str_client);
+    body = my_strcat(uuid_str_thread, "\r");
+    body = my_strcat_free(body, uuid_str_client, 1, 0);
     body = my_strcat_free(body, "\r", 1, 0);
     body = my_strcat_free(body, time_str, 1, 0);
     body = my_strcat_free(body, "\r", 1, 0);
@@ -136,8 +142,6 @@ reply_t *send_replies_display_list(char *body, client_t *client, reply_t
 static void replies_display_list(UNUSED server_t *server, UNUSED client_t
     *client)
 {
-    char uuid_str_thread[37] = {0};
-    char uuid_str_client[37] = {0};
     char *body;
     reply_t *reply;
 
@@ -148,13 +152,9 @@ static void replies_display_list(UNUSED server_t *server, UNUSED client_t
             404, "No channel found");
     reply = get_reply_by_uuid(server->replies, server->channels->head->uuid);
     while (reply) {
-        uuid_unparse(reply->thread_uuid, uuid_str_thread);
-        uuid_unparse(client->uuid, uuid_str_client);
-        body = my_strcat(uuid_str_thread, "\r");
-        body = my_strcat_free(body, uuid_str_client, 1, 0);
-        if (send_replies_display_list(body, client, reply) == NULL)
+        reply = send_replies_display_list(body, client, reply);
+        if (reply == NULL)
             return;
-        reply = get_reply_by_uuid(server->replies, reply->next->uuid);
     }
 }
 
