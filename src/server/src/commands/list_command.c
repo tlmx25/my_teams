@@ -12,20 +12,18 @@
 #include "request.h"
 #include "my.h"
 
-void send_thread_display_list(char *body, client_t *client, thread_t *thread)
+team_t *send_team_display_list(char *body, client_t *client, team_t *team)
 {
-    char *time_str = timestamp_to_str(thread->created_at);
+    char uuid_str[37] = {0};
 
+    uuid_unparse(team->uuid, uuid_str);
+    body = my_strcat(uuid_str, "\r");
+    body = my_strcat_free(body, team->name, 1, 0);
     body = my_strcat_free(body, "\r", 1, 0);
-    body = my_strcat_free(body, time_str, 1, 0);
-    body = my_strcat_free(body, "\r", 1, 0);
-    body = my_strcat_free(body, thread->title, 1, 0);
-    body = my_strcat_free(body, "\r", 1, 0);
-    body = my_strcat_free(body, thread->message, 1, 0);
-    create_add_request_to_list(client->requests_sent, NT_PRINT_THREAD, 200,
-                               body);
-    free(body);
-    free(time_str);
+    body = my_strcat_free(body, team->description, 1, 0);
+    create_add_request_to_list(client->requests_sent, NT_PRINT_TEAM,
+        200, body);
+    return team->next;
 }
 
 static void team_display_list(server_t *server, client_t *client)
@@ -34,67 +32,130 @@ static void team_display_list(server_t *server, client_t *client)
     char *body;
     team_t *team;
 
-    if (!check_team_exist(server, client->context->uuid_team, client))
-        return;
-    team = get_team_by_uuid(server->teams, client->context->uuid_team);
-    if (team == NULL)
-        return;
-    uuid_unparse(team->uuid, uuid_str);
-    body = my_strcat(uuid_str, "\r");
-    body = my_strcat_free(body, team->name, 1, 0);
-    body = my_strcat_free(body, "\r", 1, 0);
-    body = my_strcat_free(body, team->description, 1, 0);
-    create_add_request_to_list(client->requests_sent, NT_PRINT_TEAM,
-                               200, body);
-    free(body);
+    if (server->teams->head == NULL)
+        return create_add_request_to_list(client->requests_sent, PRINT_ERROR,
+            404, "No team found");
+    team = get_team_by_uuid(server->teams, server->teams->head->uuid);
+    while (team) {
+        if (send_team_display_list(body, client, team) == NULL)
+            break;
+        team = get_team_by_uuid(server->teams, team->next->uuid);
+    }
 }
 
-static void channel_display_list(server_t *server, client_t *client)
+channel_t *send_channel_display_list(char *body, client_t *client, channel_t
+    *channel)
 {
     char uuid_str[37] = {0};
-    char *body;
-    channel_t *channel;
 
-    if (!check_channel_exist(server, client->context->uuid_channel, client) ||
-        !check_subscribed(server, client))
-        return;
-    channel = get_channel_by_uuid(server->channels,
-                                  client->context->uuid_channel);
-    if (!channel)
-        return;
     uuid_unparse(channel->uuid, uuid_str);
     body = my_strcat(uuid_str, "\r");
     body = my_strcat_free(body, channel->name, 1, 0);
     body = my_strcat_free(body, "\r", 1, 0);
     body = my_strcat_free(body, channel->description, 1, 0);
     create_add_request_to_list(client->requests_sent, NT_PRINT_CHANNEL,
-                               200, body);
-    free(body);
+        200, body);
+    return channel->next;
 }
 
-static void thread_display_list(server_t *server, client_t *client)
+static void channel_display_list(server_t *server, client_t *client)
+{
+    char *body;
+    channel_t *channel;
+
+    if (!check_subscribed(server, client))
+        return;
+    if (server->channels->head == NULL)
+        return create_add_request_to_list(client->requests_sent, PRINT_ERROR,
+            404, "No channel found");
+    channel = get_channel_by_uuid(server->channels,
+        server->channels->head->uuid);
+    while (channel) {
+        if (send_channel_display_list(body, client, channel) == NULL)
+            break;
+        channel = get_channel_by_uuid(server->channels, channel->next->uuid);
+    }
+}
+
+thread_t *send_thread_display_list(char *body, client_t *client, thread_t
+    *thread)
 {
     char uuid_str_thread[37] = {0};
     char uuid_str_client[37] = {0};
-    char *body;
-    thread_t *thread;
+    char *time_str = timestamp_to_str(thread->created_at);
 
-    if (!check_thread_exist(server, client->context->uuid_thread, client) ||
-        !check_subscribed(server, client))
-        return;
-    thread = get_thread_by_uuid(server->threads,
-                                client->context->uuid_thread);
-    if (thread == NULL)
-        return;
     uuid_unparse(thread->uuid, uuid_str_thread);
     uuid_unparse(thread->creator_uuid, uuid_str_client);
     body = my_strcat(uuid_str_thread, "\r");
     body = my_strcat_free(body, uuid_str_client, 1, 0);
-    send_thread_display_list(body, client, thread);
+    body = my_strcat_free(body, "\r", 1, 0);
+    body = my_strcat_free(body, time_str, 1, 0);
+    body = my_strcat_free(body, "\r", 1, 0);
+    body = my_strcat_free(body, thread->title, 1, 0);
+    body = my_strcat_free(body, "\r", 1, 0);
+    body = my_strcat_free(body, thread->message, 1, 0);
+    create_add_request_to_list(client->requests_sent, NT_PRINT_THREAD, 200,
+        body);
+    free(body);
+    free(time_str);
+    return thread->next;
 }
 
-static void replies_display_list(UNUSED server_t *server, UNUSED client_t *client)
+static void thread_display_list(server_t *server, client_t *client)
 {
+    char *body;
+    thread_t *thread;
+
+    if (!check_subscribed(server, client))
+        return;
+    if (server->threads->head == NULL)
+        return create_add_request_to_list(client->requests_sent, PRINT_ERROR,
+            404, "No thread found");
+    thread = get_thread_by_uuid(server->threads, server->channels->head->uuid);
+    while (thread) {
+        if (send_thread_display_list(body, client, thread) == NULL)
+            return;
+        thread = get_thread_by_uuid(server->threads, thread->next->uuid);
+    }
+}
+
+reply_t *send_replies_display_list(char *body, client_t *client, reply_t
+    *reply)
+{
+    char *time_str = timestamp_to_str(reply->timestamp);
+
+    body = my_strcat_free(body, "\r", 1, 0);
+    body = my_strcat_free(body, time_str, 1, 0);
+    body = my_strcat_free(body, "\r", 1, 0);
+    body = my_strcat_free(body, reply->body, 1, 0);
+    create_add_request_to_list(client->requests_sent, NT_PRINT_REPLY,
+        200, body);
+    return reply->next;
+}
+
+static void replies_display_list(UNUSED server_t *server, UNUSED client_t
+    *client)
+{
+    char uuid_str_thread[37] = {0};
+    char uuid_str_client[37] = {0};
+    char *body;
+    reply_t *reply;
+
+    if (!check_subscribed(server, client))
+        return;
+    if (server->replies->head == NULL)
+        return create_add_request_to_list(client->requests_sent, PRINT_ERROR,
+            404, "No channel found");
+    reply = get_reply_by_uuid(server->replies, server->channels->head->uuid);
+    while (reply) {
+        uuid_unparse(reply->thread_uuid, uuid_str_thread);
+        uuid_unparse(client->uuid, uuid_str_client);
+        body = my_strcat(uuid_str_thread, "\r");
+        body = my_strcat_free(body, uuid_str_client, 1, 0);
+        if (send_replies_display_list(body, client, reply) == NULL)
+            return;
+        reply = get_reply_by_uuid(server->replies, reply->next->uuid);
+    }
 }
 
 void list_command(server_t *server, client_t *client, UNUSED char **command)
@@ -117,4 +178,6 @@ void list_command(server_t *server, client_t *client, UNUSED char **command)
             replies_display_list(server, client);
             break;
     }
+    delete_context(client->context);
+    client->context = NULL;
 }
