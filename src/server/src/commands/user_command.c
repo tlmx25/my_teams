@@ -10,8 +10,7 @@
 #include "server.h"
 #include "my.h"
 
-static void print_user(client_t *client, client_t *to_sent,
-    UNUSED client_list_t *connected)
+static void print_user(client_t *client, client_t *to_sent)
 {
     char uuid_str[37] = {0};
     char *body;
