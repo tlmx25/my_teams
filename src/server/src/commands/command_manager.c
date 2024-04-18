@@ -25,8 +25,10 @@ static const command_t COMMANDS[] = {
     {"/subscribed", subscribed_command, true, -1},
     {"/subed", subscribed_command, true, -1},
     {"/sub", subscribe_command, true, 1},
+    {"/subscribe", subscribe_command, true, 1},
     {"/unsub", unsubscribe_command, true, 1},
-    {"/list", list_command,true, -1},
+    {"/unsubscribe", unsubscribe_command, true, 1},
+    {"/list", list_command, true, -1},
     {NULL, NULL, false, -1}
 };
 
