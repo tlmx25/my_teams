@@ -14,6 +14,7 @@ VPATH += src/client/
 VPATH += src/server/
 VPATH += src/commands/
 VPATH += src/commands/create
+VPATH += src/commands/list
 VPATH += src/messages/
 VPATH += src/request/
 VPATH += src/team/
@@ -97,6 +98,9 @@ SRC += subscribed_command.c
 SRC += unsubscribe_command.c
 SRC += create_reply_command.c
 SRC += list_command.c
+SRC += list_reply_command.c
+SRC += list_thread_command.c
+SRC += list_channel_command.c
 
 CFLAGS := -Wall -Wextra -iquote ../../includes/ -iquote ../../libs/myteams
 CFLAGS += -iquote includes/
