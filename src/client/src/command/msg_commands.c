@@ -20,7 +20,7 @@ void print_prv_msg_command(UNUSED client_t *client, request_t *request)
         printf("Invalid number of arguments for private messages command\n");
         return;
     }
-    time = str_to_timestamp(args[2]);
+    time = str_to_timestamp(args[1]);
     client_private_message_print_messages(args[0], time, args[2]);
     free_tab(args);
 }

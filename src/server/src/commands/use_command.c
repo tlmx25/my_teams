@@ -74,10 +74,3 @@ void use_command(UNUSED server_t *server, client_t *client, char **command)
     create_add_request_to_list(client->requests_sent, PRINT_ERROR, 200,
         "Successfully changed context");
 }
-
-//    if (!check_team_exist(server, command[1], client))
-//        return;
-//    if (nb_args == 2 && !check_channel_exist(server, command[2], client))
-//        return;
-//    if (nb_args == 3 && !check_thread_exist(server, command[3], client))
-//        return;

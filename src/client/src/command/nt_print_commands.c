@@ -53,7 +53,7 @@ void nt_print_thread_command(UNUSED client_t *client, request_t *request)
     time_t time;
 
     if (args == NULL) {
-        printf("Invalid number of arguments for print team command\n");
+        printf("Invalid number of arguments for print thread command\n");
         return;
     }
     time = str_to_timestamp(args[2]);
