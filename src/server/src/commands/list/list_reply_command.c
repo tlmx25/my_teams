@@ -30,6 +30,7 @@ static void send_reply_display_list(client_t *client, reply_t *reply)
     create_add_request_to_list(client->requests_sent, NT_PRINT_REPLY,
         200, body);
     free(body);
+    free(time_str);
 }
 
 static reply_t *check_reply_display_list(client_t *client, reply_t

@@ -24,6 +24,7 @@ static void send_thread_display_list(client_t *client, thread_t *thread)
     body = my_strcat_free(body, uuid_str, 1, 0);
     body = my_strcat_free(body, "\r", 1, 0);
     body = my_strcat_free(body, time_str, 1, 0);
+    body = my_strcat_free(body, "\r", 1, 0);
     body = my_strcat_free(body, thread->title, 1, 0);
     body = my_strcat_free(body, "\r", 1, 0);
     body = my_strcat_free(body, thread->message, 1, 0);
