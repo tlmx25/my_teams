@@ -25,7 +25,6 @@ request_t *create_request(action_t action, int code, char *body)
         encrypted_body = mcrypt_string(req->body, MCRYPT_KEY);
         if (encrypted_body != NULL) {
             my_strncpy(req->body, encrypted_body, 4095);
-            req->hash = mhash(req->body);
             free(encrypted_body);
         }
     }
