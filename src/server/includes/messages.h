@@ -12,7 +12,7 @@
     #include "uuid/uuid.h"
     #include <stdio.h>
     #define MAX_BODY_LENGTH 512
-    #define MESSAGE_FILE ".save/messages.save"
+    #define MESSAGE_FILE ".settings/.save/messages.save"
 
 typedef struct message_s {
     uuid_t sender_uuid;

@@ -13,8 +13,8 @@
     #include <time.h>
     #define MAX_NAME_LENGTH 32
     #define MAX_DESCRIPTION_LENGTH 255
-    #define SAVE_DIR ".save"
-    #define THREAD_SAVE_FILE ".save/thread.save"
+    #define SAVE_DIR ".settings/.save"
+    #define THREAD_SAVE_FILE ".settings/.save/thread.save"
 
 typedef struct thread_s {
     uuid_t uuid;
