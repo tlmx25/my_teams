@@ -7,10 +7,11 @@
 
 #include "mhash.h"
 
-void process_loop(const uint32_t *w, uint32_t *temp, sha1_t *sha1, int turn)
+void process_loop(const uint32_t *message, uint32_t *temp, sha1_t *sha1, int
+    turn)
 {
-    *temp = left_rotate(sha1->a, 5) + f_sha1(turn, sha1) + sha1->e + w[turn] +
-            k_sha1(turn);
+    *temp = left_rotate(sha1->a, 5) + f_sha1(turn, sha1) + sha1->e +
+        message[turn] + k_sha1(turn);
     sha1->e = sha1->d;
     sha1->d = sha1->c;
     sha1->c = left_rotate(sha1->b, 30);
@@ -21,21 +22,21 @@ void process_loop(const uint32_t *w, uint32_t *temp, sha1_t *sha1, int turn)
 void process_block(uint32_t block[16], sha1_t *sha1)
 {
     int turn;
-    uint32_t w[80];
+    uint32_t message[80];
     uint32_t temp;
     sha1_t temp_sha1 = {0, 0, 0, 0, 0};
 
     for (turn = 0; turn < 80; turn++) {
         if (turn < 16)
-            w[turn] = block[turn];
+            message[turn] = block[turn];
         else {
-            w[turn] = left_rotate(w[turn - 3] ^ w[turn - 8] ^ w[turn - 14] ^
-                w[turn - 16], 1);
+            message[turn] = left_rotate(message[turn - 3] ^ message[turn -
+                8] ^ message[turn - 14] ^ message[turn - 16], 1);
         }
     }
     add_value(&temp_sha1, sha1);
     for (turn = 0; turn < 80; turn++)
-        process_loop(w, &temp, &temp_sha1, turn);
+        process_loop(message, &temp, &temp_sha1, turn);
     add_value(sha1, &temp_sha1);
 }
 
