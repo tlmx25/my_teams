@@ -8,18 +8,27 @@
 #include <stdlib.h>
 #include "my.h"
 #include "request.h"
+#include "msecurity.h"
 
 request_t *create_request(action_t action, int code, char *body)
 {
     request_t *req = calloc(sizeof(request_t), 1);
+    char *encrypted_body;
 
     if (req == NULL)
         return NULL;
     req->action = action;
     req->code = code;
     uuid_generate(req->uuid);
-    if (body != NULL)
+    if (body != NULL) {
         my_strncpy(req->body, body, 4095);
+        encrypted_body = mcrypt_string(req->body, MCRYPT_KEY);
+        if (encrypted_body != NULL) {
+            my_strncpy(req->body, encrypted_body, 4095);
+            req->hash = mhash(req->body);
+            free(encrypted_body);
+        }
+    }
     return req;
 }
 
