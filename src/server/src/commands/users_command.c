@@ -23,7 +23,7 @@ static void print_user(client_t *client, client_t *to_sent)
     body = my_strcat_free(body, "\r", 1, 0);
     my_strncpy(body, body, MAX_BODY_LENGTH);
     create_add_request_to_list(to_sent->requests_sent, NT_PRINT_USER, 200,
-                               body);
+        body);
     free(body);
 }
 
