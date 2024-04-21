@@ -10,7 +10,7 @@ Available commands:
 /subscribe ["team_uuid"] : subscribe to the events of a team and its sub directories
 /subscribed ?["team_uuid"] : list all subscribed teams or list all users subscribed to a team
 /unsubscribe ["team_uuid"] : unsubscribe from a team
-/use ?["team_uuid"] ?["channel_uuid"] ?[“thread_uuid”] : Sets the command context to a team/channel/thread
+/use ?["team_uuid"] ?["channel_uuid"] ?["thread_uuid"] : Sets the command context to a team/channel/thread
 /create : based on the context, create the sub resource
 /list : based on the context, list all the sub resources
 /info : based on the context, display details of the current resource
