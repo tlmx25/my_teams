@@ -1,0 +1,64 @@
+my_teams protocol
+
+The following are the FTP commands from client to server:
+
+	/login <SP> <"user_name"> <CRLF>				: Set the user_name used by client
+	
+	/logout <SP> 							: Disconnect the client from the server
+	
+	/users <SP> 							: Get the list of all users that exist
+	
+        /user <SP> <"user_uuid"> <CRLF>   				: Get details about the requested user
+        
+        /messages <SP> <"user_uuid"> <CRLF>				: List all messages exchanged with the user
+        
+        /subscribe <SP> <"team_uuid"> <CRLF>				: Subscribe to the events of a team
+        
+        /subscribed <SP> <?"team_uuid"> <CRLF>				: List all subscribed teams or users
+        
+        /unsubscribe <SP> <"team_uuid"> <CRLF>				: Unsubscribe from a team
+        
+        /use <SP> <?"team_uuid"> <CRLF>					: Sets the command context to the entity
+        
+        /use <SP> <?"channel_uuid"> <CRLF>				: Sets the command context to the entity
+        
+        /use <SP> <?"thread_uuid"> <CRLF>				: Sets the command context to the entity
+        
+        
+        (Based on the context set by /use, create the sub resource)
+        
+        /create <SP> <"team_name"> <SP> <"team_description"> <CRLF> 	: Create a new team
+        /create <SP> <"channel_name"> <SP> <"channel_description"> <CRLF> : Create a new channel
+        /create <SP> <"thread_title"> <SP> <"thread_message"> <CRLF> 	: Create a new thread
+        /create <SP> <"comment_body"> <CRLF> 				: Create a new reply
+        
+        
+        (Based on the context set by /use, list all the sub resources)
+        
+        /list <CRLF> 							: List all existing teams, channels, threads, replies
+        
+        
+        (Based on the context set by /use, display details of the current resource)
+        
+        /info <CRLF>							: Display all existing teams, channels, threads details
+        
+        
+        (The following is a command using data transfer)
+
+	/send <SP> <"user_uuid"> <SP> <"message_body"> <CRLF> 		: Send a message to specific user
+
+Command-Reply Sequences
+
+The server reply is defined to contain the 3-digit code, followed by Space <SP>, followed by one line of text, and terminated by the Telnet end-of-line code <CRLF>.
+
+Numeric Order List of Reply Codes (Extract)
+	200 Command okay. 
+	201 Created - Resource created successfully. 
+	400 Bad Request - Malformed or unprocessable request. 
+	401 Unauthorized - Authentication required or failed. 
+	403 Forbidden - Authorization refused. 
+	404 Not Found - Requested resource not found. 
+	405 Method Not Allowed - Requested method not allowed. 
+	409 Conflict - Conflict during resource creation. 
+	500 Internal Server Error - Unexpected server-side error. 
+	503 Service Unavailable - Service temporarily unavailable.
