@@ -13,8 +13,8 @@
     #include <time.h>
     #define MAX_NAME_LENGTH 32
     #define MAX_DESCRIPTION_LENGTH 255
-    #define SAVE_DIR ".save"
-    #define CHANNEL_FILE ".save/channel.save"
+    #define SAVE_DIR ".settings/.save"
+    #define CHANNEL_FILE ".settings/.save/channel.save"
 
 typedef struct channel_s {
     uuid_t uuid;

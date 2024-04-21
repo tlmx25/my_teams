@@ -12,8 +12,8 @@
     #include <uuid/uuid.h>
     #include <time.h>
     #define MAX_BODY_LENGTH_REPLY 4096
-    #define SAVE_DIR ".save"
-    #define REPLY_FILE ".save/reply.save"
+    #define SAVE_DIR ".settings/.save"
+    #define REPLY_FILE ".settings/.save/reply.save"
 
 typedef struct reply_s {
     uuid_t uuid;

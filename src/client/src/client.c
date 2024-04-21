@@ -11,6 +11,7 @@
 #include "client_cli.h"
 #include "socket.h"
 #include "my.h"
+#include "msecurity.h"
 
 static void process_command(client_t *client, char *line)
 {
@@ -50,6 +51,7 @@ static void read_stdin(client_t *client)
 static void read_server_response(client_t *client)
 {
     request_t *req;
+    char *uncrypted_body = NULL;
 
     if (!FD_ISSET(client->fd_server, &client->config_select->readfds))
         return;
@@ -58,6 +60,8 @@ static void read_server_response(client_t *client)
         client->is_running = false;
         return;
     }
+    uncrypted_body = muncrypt_string(req->body, MCRYPT_KEY);
+    my_strcpy(req->body, uncrypted_body);
     command_manager(client, req);
     free(req);
 }

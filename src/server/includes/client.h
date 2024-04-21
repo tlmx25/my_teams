@@ -10,8 +10,8 @@
 #ifndef PRIVATE_TEAMS_CLIENT_H
     #define PRIVATE_TEAMS_CLIENT_H
     #include "request.h"
-    #define CLIENT_FILE ".save/client.save"
-    #define SAVE_DIR ".save"
+    #define CLIENT_FILE ".settings/.save/client.save"
+    #define SAVE_DIR ".settings/.save"
     #define MAX_NAME_LENGTH 32
 
 typedef enum {

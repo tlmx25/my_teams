@@ -10,8 +10,8 @@
 #ifndef PRIVATE_TEAMS_THREAD_H
     #define PRIVATE_TEAMS_THREAD_H
     #include <uuid/uuid.h>
-    #define TEAM_SAVE_FILE ".save/teams.save"
-    #define SAVE_DIR ".save"
+    #define TEAM_SAVE_FILE ".settings/.save/teams.save"
+    #define SAVE_DIR ".settings/.save"
     #define MAX_NAME_LENGTH 32
     #define MAX_DESCRIPTION_LENGTH 255
 
