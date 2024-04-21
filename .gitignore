@@ -38,7 +38,7 @@ vgcore*
 myteams_*
 *.log
 /src/server/coding-style-reports.log
-.save/*
+.settings/.save/*
 .vscode/*
 c_cpp_properties.json
 .vscode/

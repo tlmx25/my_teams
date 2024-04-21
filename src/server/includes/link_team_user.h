@@ -10,8 +10,8 @@
 #ifndef PRIVATE_TEAMS_LINK_TEAM_USER_H
     #define PRIVATE_TEAMS_LINK_TEAM_USER_H
     #include "uuid/uuid.h"
-    #define LINK_TEAM_USER_FILE ".save/link_team_user.save"
-    #define SAVE_DIR ".save"
+    #define LINK_TEAM_USER_FILE ".settings/.save/link_team_user.save"
+    #define SAVE_DIR ".settings/.save"
 
 typedef struct link_team_user_s {
     uuid_t team_uuid;
